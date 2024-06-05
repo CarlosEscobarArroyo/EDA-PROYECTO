@@ -2,7 +2,7 @@ package eda.proyectos;
 
 public class Cola<T> {
     private Nodo<T> cabeza;
-    private Nodo<T> ultimo;
+    private Nodo<T>
     
     public Cola(){
         cabeza = null;
