@@ -9,6 +9,8 @@ package eda.proyecto;
  * @author ASUS
  */
 public class CLASE1 {
-   print("XDDDDDDDDDDDDDDDDDDDDD") 
+   print("XDDDDDDDDDDDDDDDDDDDDD");
    //ya se puede
+   print("wswswswswsw");
+   
 }
