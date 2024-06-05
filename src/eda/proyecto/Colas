@@ -1,3 +1,5 @@
+package eda.proyectos;
+
 public class Cola<T> {
     private Nodo<T> cabeza;
     private Nodo<T> ultimo;
