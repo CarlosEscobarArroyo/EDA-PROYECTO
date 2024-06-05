@@ -55,7 +55,7 @@ public class Cola<T> {
     }
     public void mostar(){
         if(estaVacia()){
-            System.out.println("No existe cola");
+            System.out.println("No cola");
         }
         else{
             Nodo<T> aux = cabeza;
