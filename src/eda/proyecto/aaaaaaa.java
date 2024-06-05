@@ -13,5 +13,12 @@ public class aaaaaaa {
             WS
             WS
                     WSWS
+                    W
+                            SW
+                            SWS
+                                    SW
+                                    SW
+                                            SW
+                                            
                     
 }
