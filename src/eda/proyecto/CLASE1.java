@@ -9,5 +9,5 @@ package eda.proyecto;
  * @author ASUS
  */
 public class CLASE1 {
-    
+   print("XDDDDDDDDDDDDDDDDDDDDD") 
 }
