@@ -10,4 +10,5 @@ package eda.proyecto;
  */
 public class CLASE1 {
    print("XDDDDDDDDDDDDDDDDDDDDD") 
+   //ya se puede
 }
