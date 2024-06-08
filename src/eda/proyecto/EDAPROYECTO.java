@@ -15,9 +15,7 @@ public class EDAPROYECTO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("eeee");
-        System.out.println("eooo");
-        System.out.println("ewf");
+        System.out.println("PRUEBA");
         
         
         
