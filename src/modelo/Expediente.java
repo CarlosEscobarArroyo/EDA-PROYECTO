@@ -9,5 +9,6 @@ package modelo;
  * @author ASUS
  */
 public class Expediente {
+    dgdgfg
     
 }
