@@ -6,8 +6,10 @@
 package controlador;
 
 import java.util.ArrayList;
+import javax.accessibility.AccessibleState;
 import modelos.*;
 import tda.Lista;
+import tda.Nodo;
 
 /**
  *
@@ -15,32 +17,50 @@ import tda.Lista;
  */
 public class GestionAdministrador {
     private Lista<Administrador> administradores;
-    private int nroRutas = 0;
 
     public GestionAdministrador() {
-       this.administradores = new Lista<Administrador>();
+       this.administradores = new Lista<>();
+       Administrador admin1 = new Administrador(20224307, "password", "Carlos", "Escobar", 19, 71291853);
+       Administrador admin2 = new Administrador(20220139, "password", "Alonso", "Almerco", 20, 1291212);
+       Administrador admin3 = new Administrador(20228741, "password", "Sabrina", "Sabrina", 19, 9081272);
+       administradores.agregar(admin1);
+       administradores.agregar(admin2);
+       administradores.agregar(admin3);
     }
     
     public Lista<Administrador> getAdministradores() {
         return administradores;
     }
+    
+    
+    public boolean login(Integer usuario, String password) {
+        
+        Administrador adminAux = administradores.buscarAdministrador(usuario);
+        if (adminAux!=null) {
+            if (adminAux.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
      //Insertar
     
     public void Insertar(Administrador admin){
-        
+        administradores.agregar(admin);
     
     }
     
-    //Buscar
-    public Administrador buscar(int id) {
-        return Administrador id;
-    }
-
-    
-    //Remover
-    public void Remover(int id) {
- 
-    }
+//    //Buscar
+//    public Administrador buscar(int id) {
+//
+//    }
+//
+//    
+//    //Remover
+//    public void Remover(int id) {
+// 
+//    }
     
     
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package tda;
+import modelos.Administrador;
 
 /**
  *
@@ -84,6 +85,21 @@ public class Lista<T> {
         return null;
     }
     
+     public Administrador buscarAdministrador(int usuario) {
+        Nodo<T> aux = cabeza;
+        while (aux != null) {
+            if (aux.getElemento() instanceof Administrador) {
+                Administrador admin = (Administrador) aux.getElemento();
+                if (admin.getCodigoAdministrador().equals(usuario)) {
+                    return admin;
+                }
+            }
+            aux = aux.getSgteNodo();
+        }
+        return null;
+    }
+
+            
     public void eliminar(int pos) {
         if (pos >= 1 && pos <= longitud()) {
             if (pos == 1) {
