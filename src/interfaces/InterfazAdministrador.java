@@ -14,19 +14,30 @@ import java.util.Iterator;
  */
 public class InterfazAdministrador extends javax.swing.JFrame {
     private GestionInteresado objGestionInteresdo;
-    private DefaultTableModel tabla;
+    private DefaultTableModel modeloTabla1;
+    private DefaultTableModel modeloTabla2;
     
     public InterfazAdministrador() {
         initComponents();
         this.objGestionInteresdo= new GestionInteresado();
 
-        this.tabla=new DefaultTableModel();
-        this.tabla.addColumn("Nombre");
-        this.tabla.addColumn("Apellido");
-        this.tabla.addColumn("Edad");
-        this.tabla.addColumn("Dni");
-        this.txtTable.setModel(tabla);
+        modeloTabla1 = new DefaultTableModel();
+        modeloTabla2 = new DefaultTableModel();
+        modeloTabla1.addColumn("Nombre");
+        modeloTabla1.addColumn("Apellido");
+        modeloTabla1.addColumn("Edad");
+        modeloTabla1.addColumn("DNI");
+        
+        modeloTabla2.addColumn("Nombre");
+        modeloTabla2.addColumn("Apellido");
+        modeloTabla2.addColumn("Edad");
+        modeloTabla2.addColumn("DNI");
+        
+        tabla1.setModel(modeloTabla1);
+        tabla2.setModel(modeloTabla2);
         this.cargarInteresados();
+        
+        
     }
 
     private void cargarInteresados() {
@@ -41,7 +52,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             fila[1] = intere.getApellido();
             fila[2] = String.valueOf(intere.getEdad());
             fila[3] = String.valueOf(intere.getDni());
-            tabla.addRow(fila);
+            modeloTabla1.addRow(fila);
         } else {
             System.err.println("Elemento nulo encontrado en la posición: " + i);
             }
@@ -61,9 +72,9 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtTable = new javax.swing.JTable();
+        tabla1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtTable1 = new javax.swing.JTable();
+        tabla2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,7 +82,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
         jLabel2.setText("Dependencias:");
 
-        txtTable.setModel(new javax.swing.table.DefaultTableModel(
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -82,9 +93,9 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(txtTable);
+        jScrollPane1.setViewportView(tabla1);
 
-        txtTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,7 +106,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(txtTable1);
+        jScrollPane2.setViewportView(tabla2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +181,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable txtTable;
-    private javax.swing.JTable txtTable1;
+    private javax.swing.JTable tabla1;
+    private javax.swing.JTable tabla2;
     // End of variables declaration//GEN-END:variables
 }
