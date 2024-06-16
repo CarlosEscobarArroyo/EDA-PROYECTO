@@ -8,6 +8,6 @@ package controlador;
  *
  * @author brina
  */
-public class GestionInteresado {
+public class GestionUsuario {
     
 }
