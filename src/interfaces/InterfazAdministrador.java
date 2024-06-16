@@ -3,19 +3,51 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaces;
-
+import javax.swing.table.DefaultTableModel;
+import modelos.*;
+import tda.*;
+import controlador.*;
+import java.util.Iterator;
 /**
  *
  * @author brina
  */
 public class InterfazAdministrador extends javax.swing.JFrame {
-
-    /**
-     * Creates new form InterfazAdministrador
-     */
+    private GestionInteresado objGestionInteresdo;
+    private DefaultTableModel tabla;
+    
     public InterfazAdministrador() {
         initComponents();
+        this.objGestionInteresdo= new GestionInteresado();
+
+        this.tabla=new DefaultTableModel();
+        this.tabla.addColumn("Nombre");
+        this.tabla.addColumn("Apellido");
+        this.tabla.addColumn("Edad");
+        this.tabla.addColumn("Dni");
+        this.txtTable.setModel(tabla);
+        this.cargarInteresados();
     }
+
+    private void cargarInteresados() {
+    Lista<Interesado> interesados = objGestionInteresdo.getInteresados();
+    int n = interesados.longitud();
+
+    for (int i = 1; i <= n ; i++) {
+        Interesado intere = interesados.iesimo(i);
+        if (intere != null) {
+            String[] fila = new String[4];
+            fila[0] = intere.getNombre();
+            fila[1] = intere.getApellido();
+            fila[2] = String.valueOf(intere.getEdad());
+            fila[3] = String.valueOf(intere.getDni());
+            tabla.addRow(fila);
+        } else {
+            System.err.println("Elemento nulo encontrado en la posición: " + i);
+            }
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
