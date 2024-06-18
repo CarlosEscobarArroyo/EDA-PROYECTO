@@ -4,10 +4,32 @@
  */
 package controlador;
 
+import tda.*;
+import modelos.*;
 /**
  *
  * @author brina
  */
 public class GestionDependencia {
+    Lista<Dependencia> dependencias;
+
+    public GestionDependencia() {
+        this.dependencias=new Lista<>();
+        Dependencia dependencia1=new Dependencia("DUSAR", "Gerente de DUSAR");
+        Dependencia dependencia2=new Dependencia("ENVIO DE TRAMITE", "YO");
+        dependencias.agregar(dependencia1);
+        dependencias.agregar(dependencia2);
+    
+    }
+
+    public Lista<Dependencia> getDependencias() {
+        return dependencias;
+    }
+
+    public void setDependencias(Lista<Dependencia> dependencias) {
+        this.dependencias = dependencias;
+    }
+    
+    
     
 }
