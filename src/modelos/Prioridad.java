@@ -9,39 +9,20 @@ package modelos;
  * @author n04613
  */
 public class Prioridad {
-    private String alta;
-    private String medio;
-    private String baja;
+    private String prioridad;
 
-    public Prioridad(String alta, String medio, String baja) {
-        this.alta = alta;
-        this.medio = medio;
-        this.baja = baja;
+    public Prioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
 
-    public String getAlta() {
-        return alta;
+    public String getPrioridad() {
+        return prioridad;
     }
 
-    public void setAlta(String alta) {
-        this.alta = alta;
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
     }
-
-    public String getMedio() {
-        return medio;
-    }
-
-    public void setMedio(String medio) {
-        this.medio = medio;
-    }
-
-    public String getBaja() {
-        return baja;
-    }
-
-    public void setBaja(String baja) {
-        this.baja = baja;
-    }
+    
     
     
     
