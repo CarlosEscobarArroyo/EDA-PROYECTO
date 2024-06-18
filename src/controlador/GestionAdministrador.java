@@ -20,9 +20,9 @@ public class GestionAdministrador {
 
     public GestionAdministrador() {
        this.administradores = new Lista<>();
-       Administrador admin1 = new Administrador(20224307, "password", "Carlos", "Escobar", 19, 71291853);
-       Administrador admin2 = new Administrador(20223087, "password", "Alonso", "Almerco", 20, 1291212);
-       Administrador admin3 = new Administrador(20228741, "password", "Sabrina", "Sabrina", 19, 9081272);
+       Administrador admin1 = new Administrador(20224307, "password", "Carlos", "Escobar", 71291853);
+       Administrador admin2 = new Administrador(20223087, "password", "Alonso", "Almerco", 1291212);
+       Administrador admin3 = new Administrador(20228741, "password", "Sabrina", "Sabrina", 9081272);
        administradores.agregar(admin1);
        administradores.agregar(admin2);
        administradores.agregar(admin3);
