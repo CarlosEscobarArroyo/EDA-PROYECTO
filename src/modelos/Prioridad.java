@@ -8,9 +8,12 @@ package modelos;
  *
  * @author n04613
  */
-public class Prioridad {
-    private String prioridad;
 
+
+public class Prioridad {    
+    
+    private String prioridad;
+    
     public Prioridad(String prioridad) {
         this.prioridad = prioridad;
     }
