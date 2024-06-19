@@ -89,7 +89,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
         jButton5.setText("CREAR DEPENDENCIA");
 
-        jButton6.setText("INCIAR EXPEDIENTE");
+        jButton6.setText("INICIAR EXPEDIENTE");
 
         jLabel4.setText("Dependencias");
 

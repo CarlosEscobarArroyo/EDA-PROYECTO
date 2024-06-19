@@ -9,14 +9,14 @@ import java.time.LocalTime;
  * @author n04613
  */
 public class Expediente {
-    private int numExpediente;
+    private int numExpediente=0;
     private Prioridad prioridad;
     private String documento;
     private Usuario user;
     private LocalTime tiempoExpediente;
-    
-    public Expediente(int numExpediente, Prioridad pioridad, String documento, Usuario user){
-        this.numExpediente=numExpediente;
+    private static int contador=0;
+    public Expediente(Prioridad prioridad, String documento, Usuario user){
+        this.numExpediente=contador++;                
         this.prioridad=prioridad;
         this.documento=documento;
         this.user=user;
@@ -31,7 +31,7 @@ public class Expediente {
         this.numExpediente = numExpediente;
     }
 
-    public Prioridad getPrioridad() {
+    public Prioridad getPrioridad2() {
         return prioridad;
     }
 

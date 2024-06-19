@@ -130,7 +130,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="INCIAR EXPEDIENTE"/>
+        <Property name="text" type="java.lang.String" value="INICIAR EXPEDIENTE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

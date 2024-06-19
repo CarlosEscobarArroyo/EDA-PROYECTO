@@ -11,10 +11,16 @@ public class RegistroExpediente {
     
     public RegistroExpediente(){
         this.expedientes= new Cola<>();
-        Interesado interesado=new Interesado("Alonso", "Almerc", 20, 12312);
-        Prioridad prioridad=new Prioridad("alta");        
-        Expediente expediente1=new Expediente(0, prioridad, "foto", interesado);        
-        expedientes.encolar(expediente1);
+        Interesado interesado=new Interesado("Alonso", "Almerc", 10, 12312);
+        Prioridad prioridad=new Prioridad("Alta");
+        
+        Interesado interesado2=new Interesado("Messi", "Cuccitini", 20, 1245);
+        Prioridad prioridad2=new Prioridad("Media");    
+        
+        Expediente expediente1=new Expediente(prioridad, "pregrado", interesado);
+        Expediente expediente2=new Expediente(prioridad2, "egresar", interesado2);                
+        expedientes.encolar(expediente1);        
+        expedientes.encolar(expediente2);
     }
     
     public void agregarEXpediente(Expediente expediente){
