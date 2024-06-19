@@ -4,17 +4,35 @@
  */
 package interfaces;
 
+import controlador.*;
+import javax.swing.DefaultComboBoxModel;
+import modelos.Dependencia;
+import tda.Lista;
+
 /**
  *
  * @author Alonso
  */
 public class InterfazCrearExpediente extends javax.swing.JFrame {
-
-    /**
-     * Creates new form InterfazIniciarExpediente
-     */
+    private GestionDependencia objGestionDependencia;
+    
     public InterfazCrearExpediente() {
         initComponents();
+        DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
+        objGestionDependencia= new GestionDependencia();
+        Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
+
+        int n=dependencia.longitud();
+        for (int i = 1; i <= n; i++) {
+            Dependencia depen=dependencia.iesimo(i);
+            if(depen != null){
+            comboboxModel.addElement(depen.getNombre());
+            }
+            else {
+            System.err.println("Elemento nulo encontrado en la posición: " + i);
+            }
+        }
+        jComboBox1.setModel(comboboxModel);
     }
 
     /**
@@ -82,7 +100,6 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
         );
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DUSAR", "ING SISTEMAS" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

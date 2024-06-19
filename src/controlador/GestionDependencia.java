@@ -30,6 +30,8 @@ public class GestionDependencia {
         this.dependencias = dependencias;
     }
     
-    
+    public void AñadirDependencia(Dependencia dependencia){
+        dependencias.agregar(dependencia);
+    }
     
 }
