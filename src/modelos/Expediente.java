@@ -15,12 +15,30 @@ public class Expediente {
     private Usuario user;
     private LocalTime tiempoExpediente;
     private static int contador=0;
+    private String dependenciaActual;
     public Expediente(Prioridad prioridad, String documento, Usuario user){
         this.numExpediente=contador++;                
         this.prioridad=prioridad;
         this.documento=documento;
         this.user=user;
         this.tiempoExpediente=LocalTime.now();    
+        this.dependenciaActual=dependenciaActual;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public static void setContador(int contador) {
+        Expediente.contador = contador;
+    }
+
+    public String getDependenciaActual() {
+        return dependenciaActual;
+    }
+
+    public void setDependenciaActual(String dependenciaActual) {
+        this.dependenciaActual = dependenciaActual;
     }
 
     public int getNumExpediente() {

@@ -33,23 +33,26 @@ public class GestionDependencia {
     public void AñadirDependencia(Dependencia dependencia){
         dependencias.agregar(dependencia);
     }
+    private Dependencia buscarDependenciaPorNombre(String nombre) {
+        return dependencias.buscarPorNombre(nombre);
+    }
     
-    public boolean moverExpediente(int idExpediente, int idDependenciaOrigen, int idDependenciaDestino) {
-        if (idDependenciaOrigen < 0 || idDependenciaOrigen >= dependencias.size() ||
-            idDependenciaDestino < 0 || idDependenciaDestino >= dependencias.size()) {
+    
+    public boolean moverExpediente(int idExpediente, String NombreDependenciaOrigen, String NombreDependenciaDestino) {
+        Dependencia dependenciaOrigen = buscarDependenciaPorNombre(NombreDependenciaOrigen);
+        Dependencia dependenciaDestino = buscarDependenciaPorNombre(NombreDependenciaDestino);
+
+        if (dependenciaOrigen == null || dependenciaDestino == null) {
             return false; // IDs de dependencias no válidos
         }
 
-        Dependencia dependenciaOrigen = dependencias.get(idDependenciaOrigen);
-        Dependencia dependenciaDestino = dependencias.get(idDependenciaDestino);
-
-        Expediente expediente = dependenciaOrigen.getColaExpedientes().remove(idExpediente);
+        Expediente expediente = dependenciaOrigen.removerExpediente(idExpediente);
         if (expediente != null) {
-            dependenciaDestino.getColaExpedientes().enqueue(expediente);
-            return true; // Movimiento exitoso
+            dependenciaDestino.agregarExpediente(expediente);
+            return true;
         }
 
-        return false; // Expediente no encontrado
+        return false; 
     }
     
 }

@@ -46,8 +46,6 @@ public class administrarCuentas extends javax.swing.JFrame {
         if (intere != null) {
             String[] fila = new String[4];
             fila[0] = intere.getNombre();
-            fila[1] = intere.getApellido();
-            fila[2] = String.valueOf(intere.getEdad());
             fila[3] = String.valueOf(intere.getDni());
             modeloTabla1.addRow(fila);
         } else {

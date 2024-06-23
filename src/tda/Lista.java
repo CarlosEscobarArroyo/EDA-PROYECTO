@@ -4,6 +4,7 @@
  */
 package tda;
 import modelos.Administrador;
+import modelos.Dependencia;
 
 /**
  *
@@ -97,6 +98,21 @@ public class Lista<T> {
             aux = aux.getSgteNodo();
         }
         return null;
+    }
+    public T buscarPorNombre(String nombre) {
+        Nodo<T> actual = cabeza;
+
+        while (actual != null) {
+            T dato = actual.getElemento();
+            if (dato instanceof Dependencia) {
+                Dependencia dependencia = (Dependencia) dato;
+                if (dependencia.getNombre().equals(nombre)) {
+                    return dato;
+                }
+            }
+            actual = actual.getSgteNodo();
+        }
+        return null; 
     }
 
             

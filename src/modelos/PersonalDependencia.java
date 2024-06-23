@@ -11,8 +11,8 @@ package modelos;
 public class PersonalDependencia extends Usuario {
     private Dependencia dependencia;
 
-    public PersonalDependencia(Dependencia dependencia, String nombre, String apellido, Integer edad, Integer dni) {
-        super(nombre, apellido, edad, dni);
+    public PersonalDependencia(Dependencia dependencia, String nombre, Integer dni) {
+        super(nombre, dni);
         this.dependencia = dependencia;
     }
 

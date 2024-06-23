@@ -7,14 +7,14 @@ import modelos.*;
  * @author Alonso
  */
 public class RegistroExpediente {
-    Cola<Expediente> expedientes;
+    private Cola<Expediente> expedientes;
     
     public RegistroExpediente(){
         this.expedientes= new Cola<>();
-        Interesado interesado=new Interesado("Alonso", "Almerc", 10, 12312);
+        Interesado interesado=new Interesado("alonso", 42, "sx");
         Prioridad prioridad=new Prioridad("Alta");
         
-        Interesado interesado2=new Interesado("Messi", "Cuccitini", 20, 1245);
+        Interesado interesado2=new Interesado("messi", 43, "df");
         Prioridad prioridad2=new Prioridad("Media");    
         
         Expediente expediente1=new Expediente(prioridad, "pregrado", interesado);
@@ -33,5 +33,8 @@ public class RegistroExpediente {
 
     public void setExpedientes(Cola<Expediente> expedientes) {
         this.expedientes = expedientes;
-    }       
+    }
+    
+    
+    
 }

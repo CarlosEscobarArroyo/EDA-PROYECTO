@@ -90,6 +90,11 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         jButton5.setText("CREAR DEPENDENCIA");
 
         jButton6.setText("INICIAR EXPEDIENTE");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Dependencias");
 
@@ -172,6 +177,11 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        InterfazCrearExpediente form = new InterfazCrearExpediente();
+            form.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

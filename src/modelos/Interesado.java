@@ -9,9 +9,10 @@ package modelos;
  * @author Alonso
  */
 public class Interesado extends Usuario{
-    
-    public Interesado(String nombre, String apellido, Integer edad, Integer dni) {
-        super(nombre, apellido, edad, dni);
+    private String email;
+    public Interesado(String nombre, Integer dni, String email) {
+        super(nombre,dni);
+        this.email=email;        
     }
     
 }
