@@ -8,6 +8,9 @@ import javax.swing.table.DefaultTableModel;
 import modelos.*;
 import tda.*;
 import controlador.*;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 /**
  *
  * @author L34227
@@ -15,7 +18,8 @@ import controlador.*;
 public class InterfazDependencia extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla1;
     private RegistroExpediente objGestionExpediente; 
-    
+    private JTable table;
+
     public InterfazDependencia() {
         initComponents();
         this.objGestionExpediente= new RegistroExpediente(); 
@@ -96,6 +100,11 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jButton1.setText("Modificar");
 
         jButton2.setText("Mover");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Buscar");
 
@@ -153,6 +162,16 @@ public class InterfazDependencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int index= table.getSelectedRow();
+        if(index!=-1){
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"Seleccione una fila primero.");
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
