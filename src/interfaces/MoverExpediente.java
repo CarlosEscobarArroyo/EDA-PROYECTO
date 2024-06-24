@@ -14,12 +14,14 @@ import tda.Lista;
  */
 public class MoverExpediente extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
-    
+    private int id;
+    private String nombre;
     /**
      * Creates new form MoverExpediente
      */
     public MoverExpediente() {
         initComponents();
+        
         DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
         objGestionDependencia= new GestionDependencia();
         Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
@@ -35,6 +37,21 @@ public class MoverExpediente extends javax.swing.JFrame {
             }
         }
         jComboBox1.setModel(comboboxModel);
+    }
+    public MoverExpediente(int id, String nombre){
+        this.id=id;
+        this.nombre=nombre;
+        
+    }
+    public void mover(){
+        String dependenciaDestino = (String)jComboBox1.getSelectedItem();
+        String dependenciaOrigen= this.nombre;       
+        boolean verificar= objGestionDependencia.moverExpediente(this.id, dependenciaOrigen, dependenciaDestino);
+        if(verificar==true){
+            JOptionPane.showMessageDialog(this,"Movimiento exitoso");
+        }else{
+            JOptionPane.showMessageDialog(this,"Movimiento fallido");
+        }
     }
 
     /**
@@ -126,14 +143,12 @@ public class MoverExpediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+           
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String dependenciaDestino = (String)jComboBox1.getSelectedItem();
+        mover();
         
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

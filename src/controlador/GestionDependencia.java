@@ -51,7 +51,6 @@ public class GestionDependencia {
             dependenciaDestino.agregarExpediente(expediente);
             return true;
         }
-
         return false; 
     }
     

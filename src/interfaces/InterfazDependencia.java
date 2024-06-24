@@ -8,15 +8,16 @@ import javax.swing.table.DefaultTableModel;
 import modelos.*;
 import tda.*;
 import controlador.*;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 /**
  *
  * @author L34227
  */
 public class InterfazDependencia extends javax.swing.JFrame {
-    private DefaultTableModel modeloTabla1;
+    private DefaultTableModel modeloTabla1=new DefaultTableModel();;
     private RegistroExpediente objGestionExpediente; 
     private JTable table;
 
@@ -24,7 +25,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         initComponents();
         this.objGestionExpediente= new RegistroExpediente(); 
 
-        modeloTabla1 = new DefaultTableModel();
+        
         modeloTabla1.addColumn("N°");
         modeloTabla1.addColumn("Prioridad");      
         modeloTabla1.addColumn("Documento");
@@ -164,13 +165,17 @@ public class InterfazDependencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        table = new JTable(modeloTabla1);
         int index= table.getSelectedRow();
+        
         if(index!=-1){
-            
+            String dependencia = (String) table.getValueAt(index, 0);   
+            int id= (int ) table.getValueAt(index, 0);
+            MoverExpediente swap=new MoverExpediente(id, dependencia);
+            swap.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this,"Seleccione una fila primero.");
-        }
-        
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
