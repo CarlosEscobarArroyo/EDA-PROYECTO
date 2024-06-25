@@ -14,12 +14,14 @@ public class Dependencia {
     private String nombre;
     private String encargado;
     private Cola<Expediente> colaExpedientes;
-
+    
     public Dependencia(String nombre, String encargado) {
         this.nombre = nombre;
         this.encargado = encargado;
         this.colaExpedientes = new Cola<>(); // Inicialización de la cola de expedientes
-
+    }
+    public Dependencia(){
+        this.colaExpedientes= new Cola<>();
     }
 
     public Cola<Expediente> getColaExpedientes() {

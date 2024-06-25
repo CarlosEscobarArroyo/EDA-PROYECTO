@@ -12,39 +12,38 @@ import tda.Lista;
  *
  * @author n04615
  */
-public class MoverExpediente extends javax.swing.JFrame {
+public class InterfazMoverExpediente extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private int id;
     private String nombre;
     /**
      * Creates new form MoverExpediente
      */
-    public MoverExpediente() {
+    public InterfazMoverExpediente() {
+        initComponents();   
+    }
+    public InterfazMoverExpediente(int id, String nombre){
         initComponents();
-        
+        this.id=id;
+        this.nombre=nombre;        
         DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
         objGestionDependencia= new GestionDependencia();
         Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
-
         int n=dependencia.longitud();
+       
         for (int i = 1; i <= n; i++) {
             Dependencia depen=dependencia.iesimo(i);
             if(depen != null){
-            comboboxModel.addElement(depen.getNombre());
+                comboboxModel.addElement(depen.getNombre());
             }
             else {
-            System.err.println("Elemento nulo encontrado en la posición: " + i);
+                System.err.println("Elemento nulo encontrado en la posición: " + i);
             }
         }
-        jComboBox1.setModel(comboboxModel);
-    }
-    public MoverExpediente(int id, String nombre){
-        this.id=id;
-        this.nombre=nombre;
-        
+        combito2.setModel(comboboxModel);
     }
     public void mover(){
-        String dependenciaDestino = (String)jComboBox1.getSelectedItem();
+        String dependenciaDestino = (String)combito2.getSelectedItem();
         String dependenciaOrigen= this.nombre;       
         boolean verificar= objGestionDependencia.moverExpediente(this.id, dependenciaOrigen, dependenciaDestino);
         if(verificar==true){
@@ -66,7 +65,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combito2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,10 +76,9 @@ public class MoverExpediente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("A MOVER EXPEDIENTE");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        combito2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                combito2ActionPerformed(evt);
             }
         });
 
@@ -96,7 +94,7 @@ public class MoverExpediente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -108,7 +106,7 @@ public class MoverExpediente extends javax.swing.JFrame {
                         .addGap(26, 26, 26))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(105, 105, 105)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(combito2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,7 +117,7 @@ public class MoverExpediente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(combito2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -142,9 +140,9 @@ public class MoverExpediente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void combito2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combito2ActionPerformed
            
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_combito2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mover();
@@ -168,27 +166,28 @@ public class MoverExpediente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazMoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazMoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazMoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazMoverExpediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MoverExpediente().setVisible(true);
+                new InterfazMoverExpediente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> combito2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

@@ -36,15 +36,10 @@ public class GestionDependencia {
     private Dependencia buscarDependenciaPorNombre(String nombre) {
         return dependencias.buscarPorNombre(nombre);
     }
-    
-    
+ 
     public boolean moverExpediente(int idExpediente, String NombreDependenciaOrigen, String NombreDependenciaDestino) {
         Dependencia dependenciaOrigen = buscarDependenciaPorNombre(NombreDependenciaOrigen);
         Dependencia dependenciaDestino = buscarDependenciaPorNombre(NombreDependenciaDestino);
-
-        if (dependenciaOrigen == null || dependenciaDestino == null) {
-            return false; // IDs de dependencias no válidos
-        }
 
         Expediente expediente = dependenciaOrigen.removerExpediente(idExpediente);
         if (expediente != null) {

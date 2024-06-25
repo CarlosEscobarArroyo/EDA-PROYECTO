@@ -9,23 +9,20 @@ import modelos.*;
 import tda.*;
 import controlador.*;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 /**
  *
  * @author L34227
  */
 public class InterfazDependencia extends javax.swing.JFrame {
-    private DefaultTableModel modeloTabla1=new DefaultTableModel();;
-    private RegistroExpediente objGestionExpediente; 
-    private JTable table;
+    private DefaultTableModel modeloTabla1;
+    private GestionDependencia objGestionDependencia; 
+    private JLabel labelTexto;
 
     public InterfazDependencia() {
         initComponents();
-        this.objGestionExpediente= new RegistroExpediente(); 
-
-        
+        this.objGestionDependencia= new GestionDependencia(); 
+        modeloTabla1=new DefaultTableModel();
         modeloTabla1.addColumn("N°");
         modeloTabla1.addColumn("Prioridad");      
         modeloTabla1.addColumn("Documento");
@@ -36,22 +33,33 @@ public class InterfazDependencia extends javax.swing.JFrame {
         this.cargarInteresados();
     }
     private void cargarInteresados() {
-    Cola<Expediente> expediente = objGestionExpediente.getExpedientes();
-    int n = expediente.longitud();
+        if(objGestionDependencia.getDependencias().iesimo(1).getNombre().equals("DUSAR")){
+            Dependencia dependencia1=objGestionDependencia.getDependencias().iesimo(1);
+            Cola<Expediente> expediente = dependencia1.getColaExpedientes();
+            int n = expediente.longitud();
+            Cola<Expediente> temp= new Cola<>();
 
-    for (int i = 1; i <= n ; i++) {
-        Expediente intere = expediente.desencolar();
-        if (intere != null) {
-            String[] fila = new String[5];
-            fila[0] = String.valueOf(intere.getNumExpediente());
-            fila[1] =String.valueOf(intere.getPrioridad2().getPrioridad());
-            fila[2] = intere.getDocumento();
-            fila[3] = String.valueOf(intere.getUser().getNombre());
-            fila[4] = String.valueOf(intere.getTiempoExpediente());
-            modeloTabla1.addRow(fila);
-        } else {
-            System.err.println("Elemento nulo encontrado en la posición: " + i);
-            }
+            for (int i = 1; i <= n ; i++) {
+                Expediente intere = expediente.desencolar();
+                if (intere != null) {
+                    System.out.println("------------");
+                    String[] fila = new String[5];
+                    fila[0] = String.valueOf(intere.getNumExpediente());
+                    fila[1] =String.valueOf(intere.getPrioridad2().getPrioridad());
+                    fila[2] = intere.getDocumento();
+                    fila[3] = String.valueOf(intere.getUser().getNombre());
+                    fila[4] = String.valueOf(intere.getTiempoExpediente());
+                    modeloTabla1.addRow(fila);
+                    temp.encolar(intere);
+                } else {
+                    System.err.println("Elemento nulo encontrado en la posición: " + i);
+                    }
+                }
+            while (!temp.esVacia()) {
+                    expediente.encolar(temp.desencolar());
+                }
+        }else{
+            System.out.println("F");
         }
     }
 
@@ -165,13 +173,14 @@ public class InterfazDependencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        table = new JTable(modeloTabla1);
-        int index= table.getSelectedRow();
+        
+        int index= this.table3.getSelectedRow();
         
         if(index!=-1){
-            String dependencia = (String) table.getValueAt(index, 0);   
-            int id= (int ) table.getValueAt(index, 0);
-            MoverExpediente swap=new MoverExpediente(id, dependencia);
+            String dependencia = (String) jLabel1.getText();
+            int id= Integer.parseInt((String) table3.getValueAt(index, 0));
+            System.out.println(dependencia);
+            InterfazMoverExpediente swap=new InterfazMoverExpediente(id, dependencia);
             swap.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this,"Seleccione una fila primero.");
