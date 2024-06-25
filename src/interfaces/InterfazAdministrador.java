@@ -7,7 +7,6 @@ import javax.swing.table.DefaultTableModel;
 import modelos.*;
 import tda.*;
 import controlador.*;
-import java.util.Iterator;
 /**
  *
  * @author brina
@@ -17,8 +16,11 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla1;
     
     public InterfazAdministrador() {
+        initComponents();      
+    }
+    public InterfazAdministrador(GestionDependencia objGestionDependencia) {
         initComponents();
-        this.objGestionDependencia= new GestionDependencia();
+        this.objGestionDependencia= objGestionDependencia;
 
         modeloTabla1 = new DefaultTableModel();
         modeloTabla1.addColumn("Nombre");
@@ -197,7 +199,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        InterfazCrearExpediente form = new InterfazCrearExpediente();
+        InterfazCrearExpediente form = new InterfazCrearExpediente(objGestionDependencia);
             form.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -206,7 +208,8 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        InterfazDependencia interfazdepen= new InterfazDependencia();
+        
+        InterfazDependencia interfazdepen= new InterfazDependencia(objGestionDependencia);
         interfazdepen.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

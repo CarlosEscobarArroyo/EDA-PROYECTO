@@ -8,7 +8,8 @@ import modelos.*;
  */
 public class RegistroExpediente {
     private Cola<Expediente> expedientes;
-    
+    //ESTÁ EN PRUEBAAAAAAAAAAAAAAAAAAAAAAA
+    //EL METODO AÑADIR EXPEDIENTE ESTÁ EN LA CLASE DEPENDENCIA
     public RegistroExpediente(){
         this.expedientes= new Cola<>();
         Interesado interesado=new Interesado("alonso", 42, "sx");

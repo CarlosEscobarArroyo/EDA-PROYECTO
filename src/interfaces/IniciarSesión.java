@@ -12,13 +12,14 @@ import controlador.*;
  */
 public class IniciarSesión extends javax.swing.JFrame {
     private GestionAdministrador gestionAdministrador;
-
+    private GestionDependencia objGestionDependencia;
     /**
      * Creates new form IniciarSesión
      */
     public IniciarSesión() {
         initComponents();
         this.gestionAdministrador = new GestionAdministrador();
+        this.objGestionDependencia= new GestionDependencia();
     }
 
     /**
@@ -132,7 +133,7 @@ public class IniciarSesión extends javax.swing.JFrame {
         String password = this.txtContraseña.getText();
         if (this.gestionAdministrador.login(usuario, password)) {
             JOptionPane.showMessageDialog(null, "Ingreso Correcto");
-            InterfazAdministrador form = new InterfazAdministrador();
+            InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia);
             form.setVisible(true);        }
         else  {
             JOptionPane.showMessageDialog(null, "Ingreso Incorrecto");

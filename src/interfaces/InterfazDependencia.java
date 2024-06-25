@@ -21,7 +21,11 @@ public class InterfazDependencia extends javax.swing.JFrame {
 
     public InterfazDependencia() {
         initComponents();
-        this.objGestionDependencia= new GestionDependencia(); 
+
+    }
+    public InterfazDependencia(GestionDependencia objGestionDependencia) {
+        initComponents();
+        this.objGestionDependencia= objGestionDependencia; 
         modeloTabla1=new DefaultTableModel();
         modeloTabla1.addColumn("N°");
         modeloTabla1.addColumn("Prioridad");      
@@ -32,6 +36,8 @@ public class InterfazDependencia extends javax.swing.JFrame {
         table3.setModel(modeloTabla1);
         this.cargarInteresados("DUSAR");
     }
+    
+    
     private void cargarInteresados(String nombreDependencia) {
         Dependencia dependenciaSeleccionada = null;
         for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
@@ -50,6 +56,8 @@ public class InterfazDependencia extends javax.swing.JFrame {
             for (int i = 1; i <= n; i++) {
                 Expediente intere = expediente.desencolar();
                 if (intere != null) {
+                    JOptionPane.showMessageDialog(this, "NO ENTRA.", "Error", JOptionPane.ERROR_MESSAGE);
+
                     String[] fila = new String[5];
                     fila[0] = String.valueOf(intere.getNumExpediente());
                     fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
@@ -68,6 +76,39 @@ public class InterfazDependencia extends javax.swing.JFrame {
         } else {
             System.out.println("Dependencia no encontrada");
         }
+    }
+    public void cargarInteresados2(String nombreDependencia){
+        Dependencia dependenciaSeleccionada = null;
+        for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+            Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+            if (dep.getNombre().equals(nombreDependencia)) {
+                dependenciaSeleccionada = dep;
+                break;
+            }
+        }
+
+        
+            Cola<Expediente> expediente = dependenciaSeleccionada.getColaExpedientes();
+            int n = expediente.longitud();
+            Cola<Expediente> temp = new Cola<>();
+
+            for (int i = 1; i <= n; i++) {
+                Expediente intere = expediente.desencolar();
+                
+                    JOptionPane.showMessageDialog(this, "NO ENTRA.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    String[] fila = new String[5];
+                    fila[0] = String.valueOf(intere.getNumExpediente());
+                    fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
+                    fila[2] = intere.getDocumento();
+                    fila[3] = String.valueOf(intere.getUser().getNombre());
+                    fila[4] = String.valueOf(intere.getTiempoExpediente());
+                    modeloTabla1.addRow(fila);
+                    temp.encolar(intere);      
+            }
+            while (!temp.esVacia()) {
+                expediente.encolar(temp.desencolar());
+            }
     }
 
 

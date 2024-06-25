@@ -18,7 +18,11 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     
     public InterfazCrearExpediente() {
+        initComponents();     
+    }
+    public InterfazCrearExpediente(GestionDependencia objGestionDependencia) {
         initComponents();
+        this.objGestionDependencia= objGestionDependencia;
         DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
         objGestionDependencia= new GestionDependencia();
         Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
@@ -307,7 +311,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrioridadActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        InterfazAdministrador form = new InterfazAdministrador();
+        InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia);
         form.setVisible(true);
 
         // TODO add your handling code here:
