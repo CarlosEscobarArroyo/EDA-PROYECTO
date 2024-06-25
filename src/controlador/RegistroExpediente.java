@@ -23,11 +23,13 @@ public class RegistroExpediente {
         expedientes.encolar(expediente1);        
         expedientes.encolar(expediente2);
     }
-    
+    //ESTÁ EN PRUEBAAAAAAAAAAAAAAAAAAAAAAA
+    //EL METODO AÑADIR EXPEDIENTE ESTÁ EN LA CLASE DEPENDENCIA
     public void agregarEXpediente(Expediente expediente){
         expedientes.encolar(expediente);        
     } 
-
+    //ESTÁ EN PRUEBAAAAAAAAAAAAAAAAAAAAAAA
+    //EL METODO AÑADIR EXPEDIENTE ESTÁ EN LA CLASE DEPENDENCIA
     public Cola<Expediente> getExpedientes() {
         return expedientes;
     }

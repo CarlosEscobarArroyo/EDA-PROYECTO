@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import modelos.*;
 import tda.*;
 import controlador.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author brina
@@ -14,14 +15,14 @@ import controlador.*;
 public class InterfazAdministrador extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private DefaultTableModel modeloTabla1;
-    
+    private GestionUsuario objGestionUsuarios;
     public InterfazAdministrador() {
         initComponents();      
     }
-    public InterfazAdministrador(GestionDependencia objGestionDependencia) {
+    public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {
         initComponents();
         this.objGestionDependencia= objGestionDependencia;
-
+        this.objGestionUsuarios=objGestionUsuarios;
         modeloTabla1 = new DefaultTableModel();
         modeloTabla1.addColumn("Nombre");
         modeloTabla1.addColumn("Encargado");
@@ -32,18 +33,18 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     }
 
     private void cargarInteresados() {
-    Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
-    int n = dependencia.longitud();
+        Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
+        int n = dependencia.longitud();
 
-    for (int i = 1; i <= n ; i++) {
-        Dependencia intere = dependencia.iesimo(i);
-        if (intere != null) {
-            String[] fila = new String[4];
-            fila[0] = intere.getNombre();
-            fila[1] = intere.getEncargado();
-            modeloTabla1.addRow(fila);
-        } else {
-            System.err.println("Elemento nulo encontrado en la posición: " + i);
+        for (int i = 1; i <= n ; i++) {
+            Dependencia intere = dependencia.iesimo(i);
+            if (intere != null) {
+                String[] fila = new String[4];
+                fila[0] = intere.getNombre();
+                fila[1] = intere.getEncargado();
+                modeloTabla1.addRow(fila);
+            } else {
+                System.err.println("Elemento nulo encontrado en la posición: " + i);
             }
         }
     }
@@ -199,18 +200,27 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        InterfazCrearExpediente form = new InterfazCrearExpediente(objGestionDependencia);
+        InterfazCrearExpediente form = new InterfazCrearExpediente(objGestionDependencia, objGestionUsuarios);
             form.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        InterfazCrearDependencia interfazCreardependencia=new InterfazCrearDependencia(objGestionDependencia, objGestionUsuarios);
+        interfazCreardependencia.setVisible(true);
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int index= this.tabla2.getSelectedRow();
         
-        InterfazDependencia interfazdepen= new InterfazDependencia(objGestionDependencia);
-        interfazdepen.setVisible(true);
+        if(index!=-1){
+            String nombreDependencia = (String) tabla2.getValueAt(index, 0);
+            InterfazDependencia interfazdepen= new InterfazDependencia(objGestionDependencia,objGestionUsuarios,nombreDependencia);
+            interfazdepen.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this,"Seleccione una fila primero.");
+        } 
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

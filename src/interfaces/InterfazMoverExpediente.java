@@ -16,18 +16,19 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private int id;
     private String nombre;
-    /**
-     * Creates new form MoverExpediente
-     */
+    private GestionUsuario objGestionUsuarios;
+
     public InterfazMoverExpediente() {
         initComponents();   
     }
-    public InterfazMoverExpediente(int id, String nombre){
+    public InterfazMoverExpediente(int id, String nombre,GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios){
         initComponents();
         this.id=id;
         this.nombre=nombre;        
+        this.objGestionDependencia=objGestionDependencia;
+        this.objGestionUsuarios=objGestionUsuarios;
+        
         DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
-        objGestionDependencia= new GestionDependencia();
         Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
         int n=dependencia.longitud();
        
@@ -67,6 +68,7 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         combito2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +91,13 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Menú");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,8 +109,11 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
                             .addComponent(jLabel2))
                         .addGap(26, 26, 26))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -119,7 +131,9 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(combito2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -145,9 +159,13 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
     }//GEN-LAST:event_combito2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mover();
-        
+        mover();   
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia,objGestionUsuarios);
+        form.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +206,7 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> combito2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
