@@ -208,7 +208,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
         if(index!=-1){
             String dependencia = (String) txtNombreDependencia.getText();
             int id= Integer.parseInt((String) table3.getValueAt(index, 0));
-            System.out.println(dependencia);
             InterfazMoverExpediente swap=new InterfazMoverExpediente(id, dependencia, objGestionDependencia, objGestionUsuarios);
             swap.setVisible(true);
         }else{

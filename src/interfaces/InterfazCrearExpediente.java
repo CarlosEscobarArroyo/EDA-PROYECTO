@@ -274,7 +274,6 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
             Dependencia dependenciaSeleccionada=null;
 
             for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
-                System.out.println("*");
                 Dependencia dependencia = objGestionDependencia.getDependencias().iesimo(i);
                 if (dependencia.getNombre().equals(dependenciaNombre)) {
                     System.out.println(dependenciaNombre);
