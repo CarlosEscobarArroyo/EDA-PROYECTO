@@ -30,22 +30,29 @@ public class InterfazDependencia extends javax.swing.JFrame {
         modeloTabla1.addColumn("Hora");      
         //tabla1.setModel(modeloTabla1);
         table3.setModel(modeloTabla1);
-        this.cargarInteresados();
+        this.cargarInteresados("DUSAR");
     }
-    private void cargarInteresados() {
-        if(objGestionDependencia.getDependencias().iesimo(1).getNombre().equals("DUSAR")){
-            Dependencia dependencia1=objGestionDependencia.getDependencias().iesimo(1);
-            Cola<Expediente> expediente = dependencia1.getColaExpedientes();
-            int n = expediente.longitud();
-            Cola<Expediente> temp= new Cola<>();
+    private void cargarInteresados(String nombreDependencia) {
+        Dependencia dependenciaSeleccionada = null;
+        for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+            Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+            if (dep.getNombre().equals(nombreDependencia)) {
+                dependenciaSeleccionada = dep;
+                break;
+            }
+        }
 
-            for (int i = 1; i <= n ; i++) {
+        if (dependenciaSeleccionada != null) {
+            Cola<Expediente> expediente = dependenciaSeleccionada.getColaExpedientes();
+            int n = expediente.longitud();
+            Cola<Expediente> temp = new Cola<>();
+
+            for (int i = 1; i <= n; i++) {
                 Expediente intere = expediente.desencolar();
                 if (intere != null) {
-                    System.out.println("------------");
                     String[] fila = new String[5];
                     fila[0] = String.valueOf(intere.getNumExpediente());
-                    fila[1] =String.valueOf(intere.getPrioridad2().getPrioridad());
+                    fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
                     fila[2] = intere.getDocumento();
                     fila[3] = String.valueOf(intere.getUser().getNombre());
                     fila[4] = String.valueOf(intere.getTiempoExpediente());
@@ -53,15 +60,16 @@ public class InterfazDependencia extends javax.swing.JFrame {
                     temp.encolar(intere);
                 } else {
                     System.err.println("Elemento nulo encontrado en la posición: " + i);
-                    }
                 }
+            }
             while (!temp.esVacia()) {
-                    expediente.encolar(temp.desencolar());
-                }
-        }else{
-            System.out.println("F");
+                expediente.encolar(temp.desencolar());
+            }
+        } else {
+            System.out.println("Dependencia no encontrada");
         }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

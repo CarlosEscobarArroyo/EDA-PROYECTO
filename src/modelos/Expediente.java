@@ -10,15 +10,15 @@ import java.time.LocalTime;
  */
 public class Expediente {
     private int numExpediente=0;
-    private Prioridad prioridad;
+    private Prioridad prioridad2;
     private String documento;
     private Usuario user;
     private LocalTime tiempoExpediente;
     private static int contador=0;
     private String dependenciaActual;
-    public Expediente(Prioridad prioridad, String documento, Usuario user){
+    public Expediente(Prioridad prioridad2, String documento, Usuario user, String dependenciaActual){
         this.numExpediente=contador++;                
-        this.prioridad=prioridad;
+        this.prioridad2=prioridad2;
         this.documento=documento;
         this.user=user;
         this.tiempoExpediente=LocalTime.now();    
@@ -50,11 +50,11 @@ public class Expediente {
     }
 
     public Prioridad getPrioridad2() {
-        return prioridad;
+        return prioridad2;
     }
 
-    public void setPrioridad(Prioridad prioridad) {
-        this.prioridad = prioridad;
+    public void setPrioridad2(Prioridad prioridad) {
+        this.prioridad2 = prioridad;
     }
 
     public String getDocumento() {

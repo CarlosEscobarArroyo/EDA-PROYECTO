@@ -216,7 +216,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
@@ -242,7 +242,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         pack();
@@ -264,8 +264,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
 
             Interesado interesado = new Interesado(nombre, dni, email);        
             Prioridad prioridad = new Prioridad(prioridad1);
-            Expediente expediente = new Expediente(prioridad, informacion, interesado);
-            expediente.setDependenciaActual(dependenciaNombre);
+            Expediente expediente = new Expediente(prioridad, informacion, interesado, dependenciaNombre);
             
             Dependencia dependenciaSeleccionada=null;
 
@@ -278,9 +277,9 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
                     break;
                 }
             }
-
             dependenciaSeleccionada.agregarExpediente(expediente);
             
+            System.out.println(dependenciaSeleccionada.getColaExpedientes().desencolar().getUser().getNombre());
             // Limpiar campos
             txtDNI.setText("");
             txtEmail.setText("");

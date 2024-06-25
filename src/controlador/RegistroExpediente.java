@@ -17,8 +17,8 @@ public class RegistroExpediente {
         Interesado interesado2=new Interesado("messi", 43, "df");
         Prioridad prioridad2=new Prioridad("Media");    
         
-        Expediente expediente1=new Expediente(prioridad, "pregrado", interesado);
-        Expediente expediente2=new Expediente(prioridad2, "egresar", interesado2);                
+        Expediente expediente1=new Expediente(prioridad, "pregrado", interesado,"DUSAR");
+        Expediente expediente2=new Expediente(prioridad2, "egresar", interesado2,"DUSAR");                
         expedientes.encolar(expediente1);        
         expedientes.encolar(expediente2);
     }
