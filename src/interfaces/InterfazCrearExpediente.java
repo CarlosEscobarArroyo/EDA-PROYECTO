@@ -267,7 +267,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
             String dependenciaNombre = (String)jComboBox1.getSelectedItem();
             String prioridad1 = (String)txtPrioridad.getSelectedItem();
 
-            Interesado interesado = new Interesado(nombre, dni, email);        
+            Interesado interesado = new Interesado(nombre, dni, telefono, email);        
             Prioridad prioridad = new Prioridad(prioridad1);
             Expediente expediente = new Expediente(prioridad, informacion, interesado, dependenciaNombre);
             
