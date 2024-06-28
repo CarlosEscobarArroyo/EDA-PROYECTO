@@ -34,7 +34,7 @@ public class GestionAdministrador {
         return administradores;
     }
     
-    
+    //METODO CREADO PARA SER USADO EN LA INTERFAZ
     public boolean login(Integer usuario, String password) {
         
         Administrador adminAux = administradores.buscarAdministrador(usuario);
@@ -46,23 +46,7 @@ public class GestionAdministrador {
         return false;
     }
     
-     //Insertar
-    
-    public void Insertar(Administrador admin){
-        administradores.agregar(admin);
-    
-    }
-    
-//    //Buscar
-//    public Administrador buscar(int id) {
-//
-//    }
-//
-//    
-//    //Remover
-//    public void Remover(int id) {
-// 
-//    }
+
     
     
 }

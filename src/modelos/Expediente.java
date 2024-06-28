@@ -16,6 +16,7 @@ public class Expediente {
     private LocalTime tiempoExpediente;
     private static int contador=0;
     private String dependenciaActual;
+    
     public Expediente(Prioridad prioridad2, String documento, Usuario user, String dependenciaActual){
         this.numExpediente=contador++;                
         this.prioridad2=prioridad2;

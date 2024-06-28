@@ -16,7 +16,7 @@ public class GestionDependencia {
     public GestionDependencia() {
         this.dependencias=new Lista<>();
         Dependencia dependencia1=new Dependencia("DUSAR", "Gerente de DUSAR");
-        Dependencia dependencia2=new Dependencia("TRAMITE", "YO");
+        Dependencia dependencia2=new Dependencia("TRAMITES", "Gerente de TRAMITES");
         dependencias.agregar(dependencia1);
         dependencias.agregar(dependencia2);
     
