@@ -12,7 +12,7 @@ import modelos.*;
  */
 public class GestionDependencia {
     Lista<Dependencia> dependencias;
-
+    //HOLA
     public GestionDependencia() {
         this.dependencias=new Lista<>();
         Dependencia dependencia1=new Dependencia("DUSAR", "Gerente de DUSAR");
