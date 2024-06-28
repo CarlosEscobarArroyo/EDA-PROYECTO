@@ -310,6 +310,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia,objGestionUsuarios);
         form.setVisible(true);
+        JOptionPane.showMessageDialog(null, "okey");
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

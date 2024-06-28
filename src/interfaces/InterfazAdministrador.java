@@ -202,11 +202,13 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         InterfazCrearExpediente form = new InterfazCrearExpediente(objGestionDependencia, objGestionUsuarios);
             form.setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         InterfazCrearDependencia interfazCreardependencia=new InterfazCrearDependencia(objGestionDependencia, objGestionUsuarios);
         interfazCreardependencia.setVisible(true);
+        this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -217,6 +219,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             String nombreDependencia = (String) tabla2.getValueAt(index, 0);
             InterfazDependencia interfazdepen= new InterfazDependencia(objGestionDependencia,objGestionUsuarios,nombreDependencia);
             interfazdepen.setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(this,"Seleccione una fila primero.");
         } 
