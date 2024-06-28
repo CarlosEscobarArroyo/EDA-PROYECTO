@@ -122,6 +122,11 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel3.setText("SELECCIONA UN EXPEDIENTE PARA");
 
         jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Mover");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -221,6 +226,26 @@ public class InterfazDependencia extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int index = this.table3.getSelectedRow();
+
+        if (index != -1) {
+            int id = Integer.parseInt(table3.getValueAt(index, 0).toString());
+            String nombre = table3.getValueAt(index, 3).toString(); // Asegúrate de que estás obteniendo el nombre de la columna correcta
+            InterfazModificadorExpediente interfazModificar = new InterfazModificadorExpediente(id, nombre, objGestionDependencia, objGestionUsuarios);
+            interfazModificar.setVisible(true);
+        } else {
+            InterfazModificadorExpediente interfazModificar = new InterfazModificadorExpediente(12, "okey", objGestionDependencia, objGestionUsuarios);
+            interfazModificar.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,7 +277,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazDependencia().setVisible(true);
             }
         });
     }

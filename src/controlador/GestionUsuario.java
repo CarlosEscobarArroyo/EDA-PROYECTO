@@ -38,5 +38,10 @@ public class GestionUsuario {
         this.usuarios.agregar(usuarios);
     }
     
+    public Usuario buscarUsuario(String nombreUsuario) {
+        Usuario usuarioAux = (Usuario) usuarios.buscarPorNombre(nombreUsuario);
+        return usuarioAux;
+    }
+    
     
 }

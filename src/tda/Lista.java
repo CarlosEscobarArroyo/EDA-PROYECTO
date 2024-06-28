@@ -86,7 +86,7 @@ public class Lista<T> {
         return null;
     }
     
-     public Administrador buscarAdministrador(int usuario) {
+    public Administrador buscarAdministrador(int usuario) {
         Nodo<T> aux = cabeza;
         while (aux != null) {
             if (aux.getElemento() instanceof Administrador) {
