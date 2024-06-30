@@ -5,6 +5,8 @@
 package interfaces;
 
 import javax.swing.JOptionPane;
+import modelos.*;
+import tda.*;
 import controlador.*;
 /**
  *
@@ -54,6 +56,12 @@ public class IniciarSesión extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 170, 30));
+
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 170, 30));
 
         btnIngresar.setBackground(new java.awt.Color(0, 0, 0));
@@ -116,8 +124,36 @@ public class IniciarSesión extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
+        try {
+            int username = Integer.parseInt(txtUsuario.getText());
+            Administrador adminFinal = null;
+
+            for (int i = 0; i < this.gestionAdministrador.getAdministradores().longitud(); i++) {
+                Administrador admin = this.gestionAdministrador.getAdministradores().iesimo(i);
+                if (admin.getCodigoAdministrador() == username) {
+                    adminFinal = admin;
+                    break;
+                }
+            }
+            if (adminFinal != null && adminFinal.getCodigoAdministrador() == username) {
+                txtContraseña.setText(adminFinal.getPassword());
+            } else {
+                txtContraseña.setText("");
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al buscar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Rellenar la contraseña automáticamente si el nombre de usuario coincide
+        
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
     /**
      * @param args the command line arguments

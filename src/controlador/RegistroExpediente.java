@@ -12,10 +12,10 @@ public class RegistroExpediente {
     //EL METODO AÑADIR EXPEDIENTE ESTÁ EN LA CLASE DEPENDENCIA
     public RegistroExpediente(){
         this.expedientes= new Cola<>();
-        Interesado interesado=new Interesado("alonso", 42, "sx");
+        Interesado interesado=new Interesado("alonso", 42,98989, "sx");
         Prioridad prioridad=new Prioridad("Alta");
         
-        Interesado interesado2=new Interesado("messi", 43, "df");
+        Interesado interesado2=new Interesado("messi", 43,89898, "df");
         Prioridad prioridad2=new Prioridad("Media");    
         
         Expediente expediente1=new Expediente(prioridad, "pregrado", interesado,"DUSAR");
