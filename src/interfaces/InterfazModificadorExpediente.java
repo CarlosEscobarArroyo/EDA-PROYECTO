@@ -269,24 +269,31 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
             String email = txtEmail.getText();
             String informacion = txtInfo.getText();
             String dependenciaNombre = this.dependenciaActual;
-            String prioridad1 = (String)txtPrioridad.getSelectedItem();
+            String prioridadTexto = (String)txtPrioridad.getSelectedItem();
 
-            Interesado interesado = new Interesado(nombre, dni, telefono, email);        
-            Prioridad prioridad = new Prioridad(prioridad1);
-            Expediente expedienteNuevo = new Expediente(prioridad, informacion, interesado, dependenciaNombre);
+            Prioridad prioridad = new Prioridad(prioridadTexto);
             
-            Dependencia dependenciaSeleccionada=null;
-
-            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
-                Dependencia dependencia = objGestionDependencia.getDependencias().iesimo(i);
-                if (dependencia.getNombre().equals(dependenciaNombre)) {
-                    System.out.println(dependenciaNombre);
-                    dependenciaSeleccionada = dependencia;
-                    break;
-                }
-            }
+            Dependencia dependenciaSeleccionada = objGestionDependencia.buscarDependenciaPorNombre(dependenciaNombre);
+            
+//            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+//                Dependencia dependencia = objGestionDependencia.getDependencias().iesimo(i);
+//                if (dependencia.getNombre().equals(dependenciaNombre)) {
+//                    System.out.println(dependenciaNombre);
+//                    dependenciaSeleccionada = dependencia;
+//                    break;
+//                }
+//            }
+            
+            Expediente expedienteAModificar = dependenciaSeleccionada.removerExpediente(this.id);
+            
+            Usuario interesadoAModificar = expedienteAModificar.getUser();
+            interesadoAModificar.setDni(dni);
+            interesadoAModificar.setNombre(nombre);
+            expedienteAModificar.setPrioridad2(prioridad);
+            expedienteAModificar.setDocumento(informacion);
+            expedienteAModificar.setUser(interesadoAModificar);
+            dependenciaSeleccionada.agregarExpediente(expedienteAModificar);
                         
-            dependenciaSeleccionada.actualizarExpediente(expedienteNuevo, this.id);            
             // Limpiar campos
             txtDNI.setText("");
             txtEmail.setText("");
@@ -294,6 +301,8 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
             txtNombre.setText("");
             txtTelefono.setText("");
             JOptionPane.showMessageDialog(this, "Expediente modificado exitosamente.");
+            InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia,objGestionUsuarios);
+            form.setVisible(true);
         }catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
 

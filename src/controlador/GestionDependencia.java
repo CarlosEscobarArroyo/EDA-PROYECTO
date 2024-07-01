@@ -33,8 +33,10 @@ public class GestionDependencia {
     public void AñadirDependencia(Dependencia dependencia){
         dependencias.agregar(dependencia);
     }
-    private Dependencia buscarDependenciaPorNombre(String nombre) {
-        return dependencias.buscarPorNombre(nombre);
+    
+    public Dependencia buscarDependenciaPorNombre(String nombre) {
+        Dependencia dependenciaAux = dependencias.buscarPorNombre(nombre);
+        return dependenciaAux;
     }
  
     public boolean moverExpediente(int idExpediente, String NombreDependenciaOrigen, String NombreDependenciaDestino) {
