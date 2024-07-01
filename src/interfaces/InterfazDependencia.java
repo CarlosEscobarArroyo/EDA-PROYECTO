@@ -234,10 +234,10 @@ public class InterfazDependencia extends javax.swing.JFrame {
         if (index != -1) {
             int id = Integer.parseInt(table3.getValueAt(index, 0).toString());
             String nombre = table3.getValueAt(index, 3).toString(); // Asegúrate de que estás obteniendo el nombre de la columna correcta
-            InterfazModificadorExpediente interfazModificar = new InterfazModificadorExpediente(id, nombre, objGestionDependencia, objGestionUsuarios);
+            InterfazModificadorExpediente interfazModificar = new InterfazModificadorExpediente(id, "asas", nombreDependencia, objGestionDependencia, objGestionUsuarios);
             interfazModificar.setVisible(true);
         } else {
-            InterfazModificadorExpediente interfazModificar = new InterfazModificadorExpediente(12, "okey", objGestionDependencia, objGestionUsuarios);
+            InterfazModificadorExpediente interfazModificar = new InterfazModificadorExpediente(12, "okey", nombreDependencia, objGestionDependencia, objGestionUsuarios);
             interfazModificar.setVisible(true);
             JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
         }

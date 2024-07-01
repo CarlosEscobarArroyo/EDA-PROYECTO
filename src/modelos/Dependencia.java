@@ -69,4 +69,33 @@ public class Dependencia {
         colaExpedientes.encolar(expediente);
     }
     
+   public void actualizarExpediente(Expediente expedienteNuevo, int idExpedienteAntiguo) {
+       Cola<Expediente> tempCola = new Cola<>();
+       Expediente expedienteAntiguo = null;
+        while (!colaExpedientes.esVacia()) {
+            Expediente expediente = colaExpedientes.desencolar();
+            if (expediente.getNumExpediente()== idExpedienteAntiguo) {
+                expedienteAntiguo = expediente;
+                tempCola.encolar(expediente);
+            } else {
+                tempCola.encolar(expediente);
+            }
+        } 
+      
+       Cola<Expediente> aux = new Cola();
+
+        while (!this.colaExpedientes.esVacia()){
+            Expediente x = this.colaExpedientes.desencolar();
+            if (x == expedienteAntiguo)
+                aux.encolar(expedienteNuevo);
+            else
+                aux.encolar(x);
+        }
+        while (!aux.esVacia()){
+            this.colaExpedientes.encolar(aux.desencolar());
+        }
+        
+
+    } 
+    
 }
