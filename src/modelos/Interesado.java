@@ -11,7 +11,7 @@ package modelos;
 public class Interesado extends Usuario{
     private String email;
     private int telefono;
-    public Interesado(String nombre, Integer dni,int telefono, String email) {
+    public Interesado(String nombre, Integer dni, int telefono, String email) {
         super(nombre,dni);
         this.email=email;        
         this.telefono=telefono;

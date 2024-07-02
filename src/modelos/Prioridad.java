@@ -26,8 +26,18 @@ public class Prioridad {
         this.prioridad = prioridad;
     }
     
+    public static int obtenerValorPrioridad(String prioridad2) {
+        switch (prioridad2) {
+            case "Alta":
+                return 3;
+            case "Media":
+                return 2;
+            case "Baja":
+                return 1;
+            default:
+                throw new IllegalArgumentException("Prioridad no válida: " + prioridad2);
+        }
     
-    
-    
+    }
     
 }
