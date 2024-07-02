@@ -12,26 +12,26 @@ public class Expediente {
     private int numExpediente=0;
     private Prioridad prioridad2;
     private String documento;
-    private Usuario user;
+    private Interesado interesado;
     private LocalTime tiempoExpediente;
     private static int contador=0;
     private String dependenciaActual;
     
-    public Expediente(Prioridad prioridad2, String documento, Usuario user, String dependenciaActual){
+    public Expediente(Prioridad prioridad2, String documento, Interesado interesado, String dependenciaActual){
         this.numExpediente=contador++;                
         this.prioridad2=prioridad2;
         this.documento=documento;
-        this.user=user;
+        this.interesado=interesado;
         this.tiempoExpediente=LocalTime.now();    
         this.dependenciaActual=dependenciaActual;
     }
 
-    public static int getContador() {
-        return contador;
+    public Interesado getInteresado() {
+        return interesado;
     }
 
-    public static void setContador(int contador) {
-        Expediente.contador = contador;
+    public void setInteresado(Interesado interesado) {
+        this.interesado = interesado;
     }
 
     public String getDependenciaActual() {
@@ -64,14 +64,6 @@ public class Expediente {
 
     public void setDocumento(String documento) {
         this.documento = documento;
-    }
-
-    public Usuario getUser() {
-        return user;
-    }
-
-    public void setUser(Usuario user) {
-        this.user = user;
     }
 
     public LocalTime getTiempoExpediente() {

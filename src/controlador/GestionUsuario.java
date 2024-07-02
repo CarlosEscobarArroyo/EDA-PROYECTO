@@ -42,6 +42,4 @@ public class GestionUsuario {
         Usuario usuarioAux = (Usuario) usuarios.buscarPorNombre(nombreUsuario);
         return usuarioAux;
     }
-    
-    
 }

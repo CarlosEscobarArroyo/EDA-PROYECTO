@@ -20,7 +20,9 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
     private String nombreInteresado;
     private Usuario usuario;
     private GestionDependencia objGestionDependencia;
-    private GestionUsuario objGestionUsuarios;    
+    private GestionUsuario objGestionUsuarios;
+    private Expediente expedienteAModificar;
+    private Dependencia dependenciaSeleccionada;
 
     public InterfazModificadorExpediente() {
         initComponents();     
@@ -33,9 +35,33 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
         this.objGestionDependencia = objGestionDependencia;
         this.objGestionUsuarios = objGestionUsuarios;
         this.txtNombre.setText(nombreInteresado);
+        
+        
         this.txtDNI.setText(Integer.toString(id));
         this.boxDependencia.setText(nombreInteresado);
         
+        String dependenciaNombre = this.dependenciaActual;
+        Dependencia dependenciaSeleccionada = null;
+            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+                Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+                if (dep.getNombre().equals(dependenciaNombre)) {
+                    dependenciaSeleccionada = dep;
+                    break;
+                }
+            }
+        this.dependenciaSeleccionada=dependenciaSeleccionada;
+            
+            if (dependenciaSeleccionada!=null) {
+                System.out.println("siiii >:)");
+            } else {
+                System.out.println("nop :(");
+            }
+            
+        this.expedienteAModificar = dependenciaSeleccionada.removerExpediente(this.id);    
+        this.txtDNI.setText(String.valueOf(this.expedienteAModificar.getInteresado().getDni()));
+        this.txtEmail.setText(this.expedienteAModificar.getInteresado().getEmail());
+        this.txtInfo.setText(this.expedienteAModificar.getDocumento());
+        this.txtPrioridad.setActionCommand(String.valueOf(this.expedienteAModificar.getPrioridad2()));
     }
         
     
@@ -280,7 +306,6 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
             int dni = Integer.parseInt(txtDNI.getText());
             String email = txtEmail.getText();
             String informacion = txtInfo.getText();
-            String dependenciaNombre = this.dependenciaActual;
             String prioridadTexto = (String)txtPrioridad.getSelectedItem();
 
             Prioridad prioridad = new Prioridad(prioridadTexto);
@@ -296,29 +321,14 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
 //                }
 //            }
 
-            Dependencia dependenciaSeleccionada = null;
-            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
-                Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
-                if (dep.getNombre().equals(dependenciaNombre)) {
-                    dependenciaSeleccionada = dep;
-                    break;
-                }
-            }
+           
             
-            if (dependenciaSeleccionada!=null) {
-                System.out.println("siiii >:)");
-            } else {
-                System.out.println("nop :(");
-            }
-            
-            Expediente expedienteAModificar = dependenciaSeleccionada.removerExpediente(this.id);
-            
-            Usuario interesadoAModificar = expedienteAModificar.getUser();
+            Interesado interesadoAModificar = expedienteAModificar.getInteresado();
             interesadoAModificar.setDni(dni);
             interesadoAModificar.setNombre(nombre);
             expedienteAModificar.setPrioridad2(prioridad);
             expedienteAModificar.setDocumento(informacion);
-            expedienteAModificar.setUser(interesadoAModificar);
+            expedienteAModificar.setInteresado(interesadoAModificar);
             
             dependenciaSeleccionada.agregarExpediente(expedienteAModificar);
                         
