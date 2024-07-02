@@ -27,6 +27,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         initComponents();
         this.objGestionDependencia= objGestionDependencia; 
         this.objGestionUsuarios=objGestionUsuarios;
+        this.nombreDependencia=nombreDependencia;
         modeloTabla1=new DefaultTableModel();
         modeloTabla1.addColumn("ID");
         modeloTabla1.addColumn("Prioridad");      

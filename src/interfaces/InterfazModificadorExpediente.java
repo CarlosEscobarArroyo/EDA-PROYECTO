@@ -34,6 +34,8 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
         this.objGestionUsuarios = objGestionUsuarios;
         this.txtNombre.setText(nombreInteresado);
         this.txtDNI.setText(Integer.toString(id));
+        this.boxDependencia.setText(nombreInteresado);
+        
     }
         
     
@@ -66,7 +68,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
         txtPrioridad = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        boxDependencia = new javax.swing.JTextField();
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -159,7 +161,12 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
 
         jLabel9.setText("DEPENDENCIA");
 
-        txtId.setEnabled(false);
+        boxDependencia.setEnabled(false);
+        boxDependencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxDependenciaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,7 +184,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boxDependencia, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,7 +243,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxDependencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -262,7 +269,11 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
 
+        
+        
+        
         try {
             String nombre = txtNombre.getText();
             int telefono= Integer.parseInt(txtTelefono.getText());
@@ -353,6 +364,10 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtInfoActionPerformed
 
+    private void boxDependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxDependenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxDependenciaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,6 +407,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField boxDependencia;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -407,7 +423,6 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtInfo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JComboBox<String> txtPrioridad;

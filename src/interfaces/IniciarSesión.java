@@ -124,31 +124,7 @@ public class IniciarSesión extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        try {
-            int username = Integer.parseInt(txtUsuario.getText());
-            Administrador adminFinal = null;
 
-            for (int i = 0; i < this.gestionAdministrador.getAdministradores().longitud(); i++) {
-                Administrador admin = this.gestionAdministrador.getAdministradores().iesimo(i);
-                if (admin.getCodigoAdministrador() == username) {
-                    adminFinal = admin;
-                    break;
-                }
-            }
-            if (adminFinal != null && adminFinal.getCodigoAdministrador() == username) {
-                txtContraseña.setText(adminFinal.getPassword());
-            } else {
-                txtContraseña.setText("");
-                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El nombre de usuario debe ser un número entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al buscar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        // Rellenar la contraseña automáticamente si el nombre de usuario coincide
-        
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
