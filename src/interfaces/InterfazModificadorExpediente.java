@@ -262,6 +262,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         try {
             String nombre = txtNombre.getText();
             int telefono= Integer.parseInt(txtTelefono.getText());
@@ -273,7 +274,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
 
             Prioridad prioridad = new Prioridad(prioridadTexto);
             
-            Dependencia dependenciaSeleccionada = objGestionDependencia.buscarDependenciaPorNombre(dependenciaNombre);
+//            Dependencia dependenciaSeleccionada = objGestionDependencia.buscarDependenciaPorNombre(dependenciaNombre);
             
 //            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
 //                Dependencia dependencia = objGestionDependencia.getDependencias().iesimo(i);
@@ -283,6 +284,21 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
 //                    break;
 //                }
 //            }
+
+            Dependencia dependenciaSeleccionada = null;
+            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+                Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+                if (dep.getNombre().equals(dependenciaNombre)) {
+                    dependenciaSeleccionada = dep;
+                    break;
+                }
+            }
+            
+            if (dependenciaSeleccionada!=null) {
+                System.out.println("siiii >:)");
+            } else {
+                System.out.println("nop :(");
+            }
             
             Expediente expedienteAModificar = dependenciaSeleccionada.removerExpediente(this.id);
             
@@ -292,6 +308,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
             expedienteAModificar.setPrioridad2(prioridad);
             expedienteAModificar.setDocumento(informacion);
             expedienteAModificar.setUser(interesadoAModificar);
+            
             dependenciaSeleccionada.agregarExpediente(expedienteAModificar);
                         
             // Limpiar campos

@@ -99,6 +99,7 @@ public class Lista<T> {
         }
         return null;
     }
+    
     public T buscarPorNombre(String nombre) {
         Nodo<T> actual = cabeza;
 
