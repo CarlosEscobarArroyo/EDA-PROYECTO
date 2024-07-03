@@ -196,7 +196,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
             }
         });
 
-        jPrioridadOLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Normal", "Baja" }));
+        jPrioridadOLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioridad", "Orden de llegada" }));
         jPrioridadOLlegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPrioridadOLlegadaActionPerformed(evt);
