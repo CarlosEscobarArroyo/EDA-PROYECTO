@@ -4,6 +4,7 @@
  */
 package modelos;
 import java.time.LocalTime;
+import tda.Lista;
 /**
  *
  * @author n04613
@@ -16,6 +17,8 @@ public class Expediente {
     private LocalTime tiempoExpediente;
     private static int contador=0;
     private String dependenciaActual;
+    private String estado;
+    private Lista<String> dependenciasRecorridas;
     
     public Expediente(Prioridad prioridad2, String documento, Interesado interesado, String dependenciaActual){
         this.numExpediente=contador++;                
@@ -24,10 +27,29 @@ public class Expediente {
         this.interesado=interesado;
         this.tiempoExpediente=LocalTime.now();    
         this.dependenciaActual=dependenciaActual;
+        this.estado="En proceso";
+        this.dependenciasRecorridas=new Lista<>();
+        this.dependenciasRecorridas.agregar(dependenciaActual);
     }
 
     public Interesado getInteresado() {
         return interesado;
+    }
+
+    public Lista<String> getDependenciasRecorridas() {
+        return dependenciasRecorridas;
+    }
+
+    public void setDependenciasRecorridas(Lista<String> dependenciasRecorridas) {
+        this.dependenciasRecorridas = dependenciasRecorridas;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void setInteresado(Interesado interesado) {
@@ -39,7 +61,10 @@ public class Expediente {
     }
 
     public void setDependenciaActual(String dependenciaActual) {
-        this.dependenciaActual = dependenciaActual;
+        if (!this.dependenciaActual.equals(dependenciaActual)) {
+            this.dependenciasRecorridas.agregar(this.dependenciaActual); // Añadir la dependencia actual a la lista
+            this.dependenciaActual = dependenciaActual;
+        }
     }
 
     public int getNumExpediente() {
@@ -78,7 +103,7 @@ public class Expediente {
         switch (prioridad2) {
             case "Alta":
                 return 3;
-            case "Media":
+            case "Normal":
                 return 2;
             case "Baja":
                 return 1;

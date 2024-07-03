@@ -20,7 +20,9 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         initComponents();      
     }
     public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {
+        
         initComponents();
+        CerrarVentanas();
         this.objGestionDependencia= objGestionDependencia;
         this.objGestionUsuarios=objGestionUsuarios;
         modeloTabla1 = new DefaultTableModel();
@@ -47,6 +49,37 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 System.err.println("Elemento nulo encontrado en la posición: " + i);
             }
         }
+    }
+    private void CerrarVentanas(){
+        IniciarSesión iniciarSesion = new IniciarSesión();
+        InterfazCrearDependencia crearDependencia = new InterfazCrearDependencia();
+        InterfazCrearExpediente crearExpediente = new InterfazCrearExpediente();
+        InterfazDependencia dependencia = new InterfazDependencia();
+        InterfazModificadorExpediente modificarExpediente = new InterfazModificadorExpediente();
+        InterfazMoverExpediente moverExpediente = new InterfazMoverExpediente();
+        InterfazVerDatosExpediente verDatosExpediente = new InterfazVerDatosExpediente();
+        if (iniciarSesion != null && iniciarSesion.isVisible()) {
+            iniciarSesion.setVisible(false);
+        }
+        if (crearDependencia != null && crearDependencia.isVisible()) {
+            crearDependencia.setVisible(false);
+        }
+        if (crearExpediente != null && crearExpediente.isVisible()) {
+            crearExpediente.setVisible(false);
+        }
+        if (dependencia != null && dependencia.isVisible()) {
+            dependencia.setVisible(false);
+        }
+        if (modificarExpediente != null && modificarExpediente.isVisible()) {
+            modificarExpediente.setVisible(false);
+        }
+        if (moverExpediente != null && moverExpediente.isVisible()) {
+            moverExpediente.setVisible(false);
+        }
+        if (verDatosExpediente != null && verDatosExpediente.isVisible()) {
+            verDatosExpediente.setVisible(false);
+        }
+        
     }
 
 
