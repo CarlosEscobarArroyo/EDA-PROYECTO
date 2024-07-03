@@ -79,10 +79,11 @@ public class Dependencia {
             if (expediente.getNumExpediente()== idExpedienteAntiguo) {
                 expedienteAntiguo = expediente;
                 tempCola.encolar(expediente);
-            } else {
+            }
+            else {
                 tempCola.encolar(expediente);
             }
-        } 
+        }
       
        Cola<Expediente> aux = new Cola();
 
@@ -97,20 +98,18 @@ public class Dependencia {
             this.colaExpedientes.encolar(aux.desencolar());
         }
    }
-   
-    //Ordenar Cola por prioridad
-    public static Cola<Expediente> bubblesortPrioridad(Cola<Expediente> expedientes){
-        int n = expedientes.longitud();
+//Ordenar Cola por prioridad
+    public Cola<Expediente> bubblesortPrioridad(Dependencia dependenciaActual, Cola<Expediente> expedientes){
+        
+        int n = dependenciaActual.getColaExpedientes().longitud();
         Expediente[] arregloDeExpedientes = new Expediente[n];
 
          // Convertir la cola en un array
          for (int i = 0; i < n; i++) {
-             arregloDeExpedientes[i] = expedientes.desencolar();
+             arregloDeExpedientes[i] = dependenciaActual.getColaExpedientes().desencolar();
          }
 
-         //Ordenamiento burbuja
-
-
+//Ordenamiento burbuja
         for (int i = 0; i < n - 1; i++) {
              for (int j = 0; j < n - i - 1; j++) {
                  if (Prioridad.obtenerValorPrioridad(arregloDeExpedientes[j].getPrioridad2().getPrioridad())> 
@@ -125,31 +124,23 @@ public class Dependencia {
 
          // Volver a llenar la cola con los elementos ordenados
          for (Expediente exp : arregloDeExpedientes) {
-             expedientes.encolar(exp);
+             dependenciaActual.getColaExpedientes().encolar(exp);
          }
-
-         //Volver a encolar
-         for (int i = 0; i < n; i++) {
-             Expediente exp = expedientes.desencolar();
-             expedientes.encolar(exp);
-         }
-         return expedientes;
-     }
+         return dependenciaActual.getColaExpedientes();
+    }
 
 
     //Ordenar cola por Orden de llegada
-    public static Cola<Expediente> bubblesortOrdenDeLlegada(Cola<Expediente> expedientes){
-           int n = expedientes.longitud();
+    public Cola<Expediente> bubblesortOrdenDeLlegada(Dependencia dependenciaActual, Cola<Expediente> expedientes){
+           int n = dependenciaActual.getColaExpedientes().longitud();
            Expediente[] arregloDeExpedientes = new Expediente[n];
 
             // Convertir la cola en un array
             for (int i = 0; i < n; i++) {
-                arregloDeExpedientes[i] = expedientes.desencolar();
+                arregloDeExpedientes[i] = dependenciaActual.getColaExpedientes().desencolar();
             }
 
             //Ordenamiento burbuja
-
-
            for (int i = 0; i < n - 1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
                     if (arregloDeExpedientes[j].getNumExpediente()> arregloDeExpedientes[j+1].getNumExpediente()) {
@@ -163,14 +154,9 @@ public class Dependencia {
 
             // Volver a llenar la cola con los elementos ordenados
             for (Expediente exp : arregloDeExpedientes) {
-                expedientes.encolar(exp);
+                dependenciaActual.getColaExpedientes().encolar(exp);
             }
-
-            //Volver a encolar
-            for (int i = 0; i < n; i++) {
-                Expediente exp = expedientes.desencolar();
-                expedientes.encolar(exp);
-            }
-            return expedientes;
-        }
+            return dependenciaActual.getColaExpedientes();
+    }
+   
 }

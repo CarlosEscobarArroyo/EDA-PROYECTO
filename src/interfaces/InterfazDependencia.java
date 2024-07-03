@@ -79,41 +79,52 @@ public class InterfazDependencia extends javax.swing.JFrame {
         }
     }
     
-    public Cola<Expediente> recopilarInteresados(String nombreDependencia){
-        Dependencia dependenciaSeleccionada = null;
+    public Cola<Expediente> OrdenarColaPorTipo(Cola<Expediente> expedientes, String nombreDependencia){
+        Dependencia dependenciaActual = null;
         for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
             Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
             if (dep.getNombre().equals(nombreDependencia)) {
-                dependenciaSeleccionada = dep;
+                dependenciaActual = dep;
                 break;
             }
         }
-        if (dependenciaSeleccionada != null) {
-            Cola<Expediente> expedientesrecopilados = dependenciaSeleccionada.getColaExpedientes();
-            return expedientesrecopilados;
-        }
-        return null;
-    }
-    
-    public Cola<Expediente> ordenarExpedientesPorTipo(Cola<Expediente> expedientes, Object tipoOrden){
-        Cola<Expediente> colaDePrioridad = new Cola<>();
-        Cola<Expediente> colaOrdenDeLlegada = new Cola<>();
-        tipoOrden = (String)jPrioridadOLlegada.getSelectedItem();
-        while(!expedientes.esVacia()){
+        if (dependenciaActual != null) {
+        Cola<Expediente> colarecopilada = dependenciaActual.getColaExpedientes();
+        
+            String tipoOrden = (String)jPrioridadOLlegada.getSelectedItem();
             if("Prioridad".equals(tipoOrden)) {
-                Expediente expediente = expedientes.desencolar();
-                colaDePrioridad = Dependencia.bubblesortPrioridad(expedientes);
-                return colaDePrioridad; 
+                return dependenciaActual.bubblesortPrioridad(dependenciaActual, colarecopilada);
+
             } 
             else if ("Orden de llegada".equals(tipoOrden)) {
-                Expediente expediente = expedientes.desencolar();
-                colaOrdenDeLlegada = Dependencia.bubblesortPrioridad(expedientes);
-                return colaOrdenDeLlegada; 
-                } 
-            }
+                return dependenciaActual.bubblesortOrdenDeLlegada(dependenciaActual, colarecopilada);
+            } 
+        }
+
         return expedientes;
     }
-
+    private void actualizarTabla(Cola<Expediente> colaOrdenada) {
+        modeloTabla1.setRowCount(0); // Limpiar la tabla
+        Cola<Expediente> temp = new Cola<>();
+        while (!colaOrdenada.esVacia()) {
+            Expediente intere = colaOrdenada.desencolar();
+            if (intere != null) {
+                String[] fila = new String[5];
+                fila[0] = String.valueOf(intere.getNumExpediente());
+                fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
+                fila[2] = intere.getDocumento();
+                fila[3] = String.valueOf(intere.getInteresado().getNombre());
+                fila[4] = String.valueOf(intere.getTiempoExpediente());
+                modeloTabla1.addRow(fila);
+                temp.encolar(intere);
+            } else {
+                System.err.println("Elemento nulo encontrado en la posición.");
+            }
+        }
+        while (!temp.esVacia()) {
+            colaOrdenada.encolar(temp.desencolar());
+        }
+    }
     
     
 
@@ -330,9 +341,8 @@ public class InterfazDependencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jPrioridadOLlegadaActionPerformed
 
     private void OrdenarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdenarBtnActionPerformed
-        this.ordenarExpedientesPorTipo(this.recopilarInteresados(nombreDependencia), 
-                jPrioridadOLlegada.getSelectedItem());       
-
+        Cola<Expediente> colaOrdenada = OrdenarColaPorTipo(null, nombreDependencia);
+        actualizarTabla(colaOrdenada);
     }//GEN-LAST:event_OrdenarBtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

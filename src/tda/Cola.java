@@ -4,6 +4,9 @@
  */
 package tda;
 
+import modelos.Expediente;
+import modelos.Prioridad;
+
 /**
  *
  * @author ASUS
@@ -72,5 +75,8 @@ public class Cola<T> {
         }
         return i;
     }
-}    
+    
+
+}
+    
 
