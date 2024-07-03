@@ -30,7 +30,7 @@ public class Prioridad {
         switch (prioridad2) {
             case "Alta":
                 return 3;
-            case "Media":
+            case "Normal":
                 return 2;
             case "Baja":
                 return 1;
