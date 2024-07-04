@@ -6,6 +6,7 @@ package interfaces;
 import modelos.*;
 import tda.*;
 import controlador.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Alonso
@@ -17,6 +18,7 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
     private Expediente expediente;
     private String nombreDependencia;
     private Dependencia dependenciaSeleccionada;
+    private DefaultTableModel modeloTabla1;
     
     public InterfazVerDatosExpediente() {
         initComponents();
@@ -28,6 +30,12 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         this.expediente=expediente;
         this.dependenciaSeleccionada = retornarDependencia(nombreDependencia);
         rellenarDatos(expediente);
+        modeloTabla1=new DefaultTableModel();
+        modeloTabla1.addColumn("");   
+        tablaDependenciasRecorridas.setModel(modeloTabla1);
+        mostrarDependenciasRecorridas();
+        cargarDependenciasRecorridas();
+        
     }
     public void rellenarDatos(Expediente expediente){
         txtNombre.setText(expediente.getInteresado().getNombre());
@@ -74,6 +82,34 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         return dependenciaSeleccionada;      
     }
 
+    public void cargarDependenciasRecorridas() {
+    Lista<String> dependenciasRecorridas = expediente.getDependenciasRecorridas();
+    int n = dependenciasRecorridas.longitud();
+    for (int i = 1; i <= n; i++) {
+        String nombreDependenciasRecorridas = dependenciasRecorridas.iesimo(i);
+        if (nombreDependenciasRecorridas != null) {
+            String[] fila = new String[1];
+            fila[0] = nombreDependenciasRecorridas;
+            modeloTabla1.addRow(fila);
+        } else {
+            System.err.println("Elemento nulo encontrado en la posición: " + i);
+        }
+    }
+}
+    public void mostrarDependenciasRecorridas() {
+    Lista<String> dependenciasRecorridas = expediente.getDependenciasRecorridas();
+    int n = dependenciasRecorridas.longitud();
+        System.out.println("longitud: " + n);
+    for (int i = 1; i <= n; i++) {
+        String nombreDependenciasRecorridas = dependenciasRecorridas.iesimo(i);
+        if (nombreDependenciasRecorridas != null) {
+            System.out.println("aa: " + nombreDependenciasRecorridas);
+        } else {
+            System.err.println("Elemento nulo encontrado en la posición: " + i);
+        }
+    }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,6 +139,8 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtDependenciaActual = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaDependenciasRecorridas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,17 +244,31 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
 
         txtDependenciaActual.setText("abc");
 
+        tablaDependenciasRecorridas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaDependenciasRecorridas);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(txtDependenciaActual))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDependenciaActual, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +279,9 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
                 .addComponent(txtDependenciaActual)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jButton1.setText("Menú");
@@ -250,10 +304,10 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,6 +383,8 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaDependenciasRecorridas;
     private javax.swing.JLabel txtDependenciaActual;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtEmail;

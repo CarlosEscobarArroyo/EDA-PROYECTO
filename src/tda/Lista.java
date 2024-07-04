@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package tda;
-import modelos.Administrador;
-import modelos.Dependencia;
+import modelos.*;
+
 
 /**
  *
@@ -94,6 +94,18 @@ public class Lista<T> {
                 if (admin.getCodigoAdministrador().equals(usuario)) {
                     return admin;
                 }
+            }
+            aux = aux.getSgteNodo();
+        }
+        return null;
+    }
+    
+    public String retornarDependenciaRecorrida() {
+        Nodo<T> aux = cabeza;
+        while (aux != null) {
+            if (aux.getElemento() instanceof String) {
+                String nombreDependenciaRecorrida = (String) aux.getElemento();
+                return nombreDependenciaRecorrida;
             }
             aux = aux.getSgteNodo();
         }

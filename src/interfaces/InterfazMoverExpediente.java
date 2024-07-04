@@ -43,19 +43,9 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
         }
         combito2.setModel(comboboxModel);
     }
-    public void mover(){
-        String dependenciaDestino = (String)combito2.getSelectedItem();
-        String dependenciaOrigen= this.nombre;       
-        boolean verificar= objGestionDependencia.moverExpediente(this.id, dependenciaOrigen, dependenciaDestino);
-        if(verificar==true){
-            JOptionPane.showMessageDialog(this,"Movimiento exitoso");
-        }else{
-            JOptionPane.showMessageDialog(this,"Movimiento fallido");
-        }
-    }
     
-    public Dependencia retornarDependencia(String nombreDependencia) {
-        String dependenciaNombre = nombreDependencia;
+    public Dependencia retornarDependencia() {
+        String dependenciaNombre = this.nombre;
         Dependencia dependenciaSeleccionada = null;
             for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
                 Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
@@ -67,11 +57,28 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
         return dependenciaSeleccionada;      
     }    
     public void agregarDependenciaOrigen() {
-        Dependencia dependenciaSeleccionada = retornarDependencia(nombre);
-        Expediente expediente = dependenciaSeleccionada.removerExpediente(id);
-        expediente.agregarDependenciaRecorrida(nombre);
+        Dependencia dependenciaSeleccionada = retornarDependencia();
+        Expediente expediente = dependenciaSeleccionada.removerExpediente(this.id);
+        expediente.agregarDependenciaRecorrida(dependenciaSeleccionada.getNombre());
+        System.out.println("la dependencia que se agrego fue: " + dependenciaSeleccionada.getNombre());
+        dependenciaSeleccionada.agregarExpediente(expediente);
+    }
+
+    public void mover(){
+        String dependenciaDestino = (String)combito2.getSelectedItem();
+        String dependenciaOrigen = this.nombre;  
+        agregarDependenciaOrigen();
+        boolean verificar= objGestionDependencia.moverExpediente(this.id, dependenciaOrigen, dependenciaDestino);
+        if(verificar==true){
+            JOptionPane.showMessageDialog(this,"Movimiento exitoso");
+        }else{
+            JOptionPane.showMessageDialog(this,"Movimiento fallido");
+        }
     }
     
+
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,7 +93,7 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         combito2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        botonMover = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,10 +110,10 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Mover");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonMover.setText("Mover");
+        botonMover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonMoverActionPerformed(evt);
             }
         });
 
@@ -132,7 +139,7 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(botonMover))
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(combito2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(43, 43, 43))))
@@ -149,7 +156,7 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(botonMover))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -171,9 +178,9 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
            
     }//GEN-LAST:event_combito2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverActionPerformed
         mover();   
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonMoverActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia,objGestionUsuarios);
@@ -218,8 +225,8 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonMover;
     private javax.swing.JComboBox<String> combito2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

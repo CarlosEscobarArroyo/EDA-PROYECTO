@@ -45,6 +45,7 @@ public class GestionDependencia {
 
         Expediente expediente = dependenciaOrigen.removerExpediente(idExpediente);
         if (expediente != null) {
+            expediente.setDependenciaActual(NombreDependenciaDestino);
             dependenciaDestino.agregarExpediente(expediente);
             return true;
         }

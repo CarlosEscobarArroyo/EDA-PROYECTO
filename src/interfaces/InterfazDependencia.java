@@ -38,6 +38,8 @@ public class InterfazDependencia extends javax.swing.JFrame {
         //tabla1.setModel(modeloTabla1);
         table3.setModel(modeloTabla1);
         cargarInteresados(nombreDependencia);
+        System.out.println(nombreDependencia);
+        
     }   
     
     private void cargarInteresados(String nombreDependencia) {
@@ -145,9 +147,9 @@ public class InterfazDependencia extends javax.swing.JFrame {
         txtNombreDependencia = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonMover = new javax.swing.JButton();
+        botonVerDatos = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPrioridadOLlegada = new javax.swing.JComboBox<>();
         OrdenarBtn = new javax.swing.JButton();
@@ -192,41 +194,41 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel3.setText("SELECCIONA UN EXPEDIENTE PARA:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 293, 31));
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 0));
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Modificar");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setBackground(new java.awt.Color(255, 51, 0));
+        botonModificar.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        botonModificar.setForeground(new java.awt.Color(255, 255, 255));
+        botonModificar.setText("Modificar");
+        botonModificar.setBorderPainted(false);
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 0));
-        jButton2.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Mover");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonMover.setBackground(new java.awt.Color(255, 51, 0));
+        botonMover.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        botonMover.setForeground(new java.awt.Color(255, 255, 255));
+        botonMover.setText("Mover");
+        botonMover.setBorderPainted(false);
+        botonMover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonMoverActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 113, -1));
+        jPanel1.add(botonMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 113, -1));
 
-        jButton3.setBackground(new java.awt.Color(255, 51, 0));
-        jButton3.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Ver datos");
-        jButton3.setBorderPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botonVerDatos.setBackground(new java.awt.Color(255, 51, 0));
+        botonVerDatos.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        botonVerDatos.setForeground(new java.awt.Color(255, 255, 255));
+        botonVerDatos.setText("Ver datos");
+        botonVerDatos.setBorderPainted(false);
+        botonVerDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonVerDatosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
+        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -294,19 +296,21 @@ public class InterfazDependencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverActionPerformed
         
         int index= this.table3.getSelectedRow();
         
         if(index!=-1){
             String dependencia = (String) txtNombreDependencia.getText();
             int id= Integer.parseInt((String) table3.getValueAt(index, 0));
-            InterfazMoverExpediente swap=new InterfazMoverExpediente(id, dependencia, objGestionDependencia, objGestionUsuarios);
+            System.out.println("la dependencia es: " + nombreDependencia);
+            InterfazMoverExpediente swap = new InterfazMoverExpediente(id, nombreDependencia, objGestionDependencia, objGestionUsuarios);
+            System.out.println(dependencia);
             swap.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this,"Seleccione una fila primero.");
         }        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonMoverActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia,objGestionUsuarios);
@@ -314,7 +318,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         // TODO add your handling code here:
         int index = this.table3.getSelectedRow();
 
@@ -328,7 +332,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jPrioridadOLlegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrioridadOLlegadaActionPerformed
         
@@ -339,7 +343,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         actualizarTabla(colaOrdenada);
     }//GEN-LAST:event_OrdenarBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botonVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDatosActionPerformed
         int index = this.table3.getSelectedRow();
 
         if (index != -1) {
@@ -351,7 +355,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
         }       
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botonVerDatosActionPerformed
 
     private void botonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFinalizarActionPerformed
         // TODO add your handling code here:
@@ -415,9 +419,9 @@ public class InterfazDependencia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OrdenarBtn;
     private javax.swing.JButton botonFinalizar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonMover;
+    private javax.swing.JButton botonVerDatos;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
