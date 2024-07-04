@@ -243,7 +243,6 @@
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtDependenciaActual" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtRecorridas" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
@@ -258,8 +257,6 @@
                   <Component id="txtDependenciaActual" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtRecorridas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -279,11 +276,6 @@
         <Component class="javax.swing.JLabel" name="txtDependenciaActual">
           <Properties>
             <Property name="text" type="java.lang.String" value="abc"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="txtRecorridas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="xd"/>
           </Properties>
         </Component>
       </SubComponents>

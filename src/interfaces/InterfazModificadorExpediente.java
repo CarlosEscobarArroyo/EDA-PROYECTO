@@ -60,6 +60,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
         this.expedienteAModificar = dependenciaSeleccionada.removerExpediente(this.id);    
         this.txtDNI.setText(String.valueOf(this.expedienteAModificar.getInteresado().getDni()));
         this.txtEmail.setText(this.expedienteAModificar.getInteresado().getEmail());
+        this.txtTelefono.setText(String.valueOf(this.expedienteAModificar.getInteresado().getTelefono()));
         this.txtInfo.setText(this.expedienteAModificar.getDocumento());
         this.txtPrioridad.setActionCommand(String.valueOf(this.expedienteAModificar.getPrioridad2()));
     }
@@ -309,18 +310,6 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
 
             Prioridad prioridad = new Prioridad(prioridadTexto);
             
-//            Dependencia dependenciaSeleccionada = objGestionDependencia.buscarDependenciaPorNombre(dependenciaNombre);
-            
-//            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
-//                Dependencia dependencia = objGestionDependencia.getDependencias().iesimo(i);
-//                if (dependencia.getNombre().equals(dependenciaNombre)) {
-//                    System.out.println(dependenciaNombre);
-//                    dependenciaSeleccionada = dependencia;
-//                    break;
-//                }
-//            }
-
-           
             
             Interesado interesadoAModificar = expedienteAModificar.getInteresado();
             interesadoAModificar.setDni(dni);

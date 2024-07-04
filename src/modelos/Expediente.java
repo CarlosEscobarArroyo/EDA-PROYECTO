@@ -114,5 +114,9 @@ public class Expediente {
     
     }
     
+    public void agregarDependenciaRecorrida(String nombreDependenciaRecorrida) {
+        dependenciasRecorridas.agregar(nombreDependenciaRecorrida);
+    }
+    
 
 }

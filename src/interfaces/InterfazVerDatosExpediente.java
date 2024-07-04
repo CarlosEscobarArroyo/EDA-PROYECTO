@@ -15,14 +15,18 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private GestionUsuario objGestionUsuarios;
     private Expediente expediente;
+    private String nombreDependencia;
+    private Dependencia dependenciaSeleccionada;
+    
     public InterfazVerDatosExpediente() {
         initComponents();
     }
-    public InterfazVerDatosExpediente(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios, Expediente expediente){
+    public InterfazVerDatosExpediente(String nombreDependencia, GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios, Expediente expediente){
         initComponents();
         this.objGestionDependencia=objGestionDependencia;
         this.objGestionUsuarios=objGestionUsuarios;
         this.expediente=expediente;
+        this.dependenciaSeleccionada = retornarDependencia(nombreDependencia);
         rellenarDatos(expediente);
     }
     public void rellenarDatos(Expediente expediente){
@@ -53,8 +57,21 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         for (int i = 1; i <= expediente.getDependenciasRecorridas().longitud(); i++) {
             dependencias.append(expediente.getDependenciasRecorridas().iesimo(i)).append("\n");
         }
-        txtRecorridas.setText(dependencias.toString());
-
+        this.dependenciaSeleccionada.agregarExpediente(expediente);
+        
+    }
+    
+    public Dependencia retornarDependencia(String nombreDependencia) {
+        String dependenciaNombre = nombreDependencia;
+        Dependencia dependenciaSeleccionada = null;
+            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+                Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+                if (dep.getNombre().equals(dependenciaNombre)) {
+                    dependenciaSeleccionada = dep;
+                    break;
+                }
+            }
+        return dependenciaSeleccionada;      
     }
 
     /**
@@ -86,7 +103,6 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtDependenciaActual = new javax.swing.JLabel();
-        txtRecorridas = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -190,8 +206,6 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
 
         txtDependenciaActual.setText("abc");
 
-        txtRecorridas.setText("xd");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -201,8 +215,7 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
-                    .addComponent(txtDependenciaActual)
-                    .addComponent(txtRecorridas))
+                    .addComponent(txtDependenciaActual))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -214,8 +227,6 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
                 .addComponent(txtDependenciaActual)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRecorridas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -325,7 +336,6 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
     private javax.swing.JTextField txtInfo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrioridad;
-    private javax.swing.JLabel txtRecorridas;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

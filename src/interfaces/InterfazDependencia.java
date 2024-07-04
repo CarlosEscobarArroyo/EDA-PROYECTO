@@ -153,6 +153,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         OrdenarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        botonFinalizar = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -201,7 +202,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 51, 0));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -213,7 +214,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 113, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 113, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 51, 0));
         jButton3.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -225,7 +226,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 310, 110, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -264,15 +265,30 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazDependencia.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        botonFinalizar.setBackground(new java.awt.Color(255, 51, 0));
+        botonFinalizar.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        botonFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        botonFinalizar.setText("Finalizar");
+        botonFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFinalizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -329,13 +345,36 @@ public class InterfazDependencia extends javax.swing.JFrame {
         if (index != -1) {
             int id = Integer.parseInt(table3.getValueAt(index, 0).toString());
             Expediente expediente=objGestionDependencia.getDependencias().buscarPorNombre(nombreDependencia).removerExpediente(id);
-            InterfazVerDatosExpediente form = new InterfazVerDatosExpediente(objGestionDependencia,objGestionUsuarios,expediente);
+            InterfazVerDatosExpediente form = new InterfazVerDatosExpediente(nombreDependencia, objGestionDependencia,objGestionUsuarios,expediente);
             form.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
         }       
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void botonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFinalizarActionPerformed
+        // TODO add your handling code here:
+        int index = this.table3.getSelectedRow();
+
+        if (index != -1) {
+            int id = Integer.parseInt(table3.getValueAt(index, 0).toString());
+            Dependencia dependenciaSeleccionada = null;
+                for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+                    Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+                    if (dep.getNombre().equals(this.nombreDependencia)) {
+                        dependenciaSeleccionada = dep;
+                        break;
+                }
+            }
+            Expediente expediente= dependenciaSeleccionada.removerExpediente(id);
+            dependenciaSeleccionada.agregarExpedienteFinalizado(expediente);
+            actualizarTabla(dependenciaSeleccionada.getColaExpedientes());            
+                    
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
+        } 
+    }//GEN-LAST:event_botonFinalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,6 +414,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OrdenarBtn;
+    private javax.swing.JButton botonFinalizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

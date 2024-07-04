@@ -53,6 +53,25 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Movimiento fallido");
         }
     }
+    
+    public Dependencia retornarDependencia(String nombreDependencia) {
+        String dependenciaNombre = nombreDependencia;
+        Dependencia dependenciaSeleccionada = null;
+            for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+                Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+                if (dep.getNombre().equals(dependenciaNombre)) {
+                    dependenciaSeleccionada = dep;
+                    break;
+                }
+            }
+        return dependenciaSeleccionada;      
+    }    
+    public void agregarDependenciaOrigen() {
+        Dependencia dependenciaSeleccionada = retornarDependencia(nombre);
+        Expediente expediente = dependenciaSeleccionada.removerExpediente(id);
+        expediente.agregarDependenciaRecorrida(nombre);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
