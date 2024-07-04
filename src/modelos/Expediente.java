@@ -30,7 +30,6 @@ public class Expediente {
         this.dependenciaActual=dependenciaActual;
         this.estado="En proceso";
         this.dependenciasRecorridas=new Lista<>();
-        this.dependenciasRecorridas.agregar(dependenciaActual);
     }
 
     public Interesado getInteresado() {
@@ -63,7 +62,7 @@ public class Expediente {
 
     public void setDependenciaActual(String dependenciaActual) {
         if (!this.dependenciaActual.equals(dependenciaActual)) {
-            this.dependenciasRecorridas.agregar(this.dependenciaActual); // Añadir la dependencia actual a la lista
+            //this.dependenciasRecorridas.agregar(this.dependenciaActual); // Añadir la dependencia actual a la lista
             this.dependenciaActual = dependenciaActual;
         }
     }
@@ -115,6 +114,7 @@ public class Expediente {
     }
     
     public void agregarDependenciaRecorrida(String nombreDependenciaRecorrida) {
+        System.out.println("Dependencia Agregada Al Recorrido");
         dependenciasRecorridas.agregar(nombreDependenciaRecorrida);
     }
     

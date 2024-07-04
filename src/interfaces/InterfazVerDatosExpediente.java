@@ -33,7 +33,6 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         modeloTabla1=new DefaultTableModel();
         modeloTabla1.addColumn("");   
         tablaDependenciasRecorridas.setModel(modeloTabla1);
-        mostrarDependenciasRecorridas();
         cargarDependenciasRecorridas();
         
     }
@@ -60,11 +59,11 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         txtEstado.setEditable(false); 
         
         txtDependenciaActual.setText(expediente.getDependenciaActual());
- 
-        StringBuilder dependencias = new StringBuilder();
-        for (int i = 1; i <= expediente.getDependenciasRecorridas().longitud(); i++) {
-            dependencias.append(expediente.getDependenciasRecorridas().iesimo(i)).append("\n");
-        }
+// 
+//        StringBuilder dependencias = new StringBuilder();
+//        for (int i = 1; i <= expediente.getDependenciasRecorridas().longitud(); i++) {
+//            dependencias.append(expediente.getDependenciasRecorridas().iesimo(i)).append("\n");
+//        }
         this.dependenciaSeleccionada.agregarExpediente(expediente);
         
     }
@@ -96,19 +95,9 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         }
     }
 }
-    public void mostrarDependenciasRecorridas() {
-    Lista<String> dependenciasRecorridas = expediente.getDependenciasRecorridas();
-    int n = dependenciasRecorridas.longitud();
-        System.out.println("longitud: " + n);
-    for (int i = 1; i <= n; i++) {
-        String nombreDependenciasRecorridas = dependenciasRecorridas.iesimo(i);
-        if (nombreDependenciasRecorridas != null) {
-            System.out.println("aa: " + nombreDependenciasRecorridas);
-        } else {
-            System.err.println("Elemento nulo encontrado en la posición: " + i);
-        }
-    }
-    }
+
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

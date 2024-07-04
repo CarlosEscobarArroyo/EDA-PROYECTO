@@ -156,6 +156,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         botonFinalizar = new javax.swing.JButton();
+        botonHistorial = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -278,6 +279,14 @@ public class InterfazDependencia extends javax.swing.JFrame {
         });
         jPanel1.add(botonFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, -1, -1));
 
+        botonHistorial.setText("historial");
+        botonHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonHistorialActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -380,6 +389,15 @@ public class InterfazDependencia extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_botonFinalizarActionPerformed
 
+    private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
+        // TODO add your handling code here:
+
+        InterfazFinalizarExpediente form = new InterfazFinalizarExpediente(objGestionDependencia, objGestionUsuarios, nombreDependencia);
+        form.setVisible(true);
+               
+        
+    }//GEN-LAST:event_botonHistorialActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -419,6 +437,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OrdenarBtn;
     private javax.swing.JButton botonFinalizar;
+    private javax.swing.JButton botonHistorial;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMover;
     private javax.swing.JButton botonVerDatos;

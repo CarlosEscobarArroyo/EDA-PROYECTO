@@ -29,6 +29,10 @@ public class Dependencia {
         this.colaExpedientes= new Cola<>();
     }
 
+    public Cola<Expediente> getColaExpedientesFinalizados() {
+        return colaExpedientesFinalizados;
+    }
+    
     public Cola<Expediente> getColaExpedientes() {
         return colaExpedientes;
     }

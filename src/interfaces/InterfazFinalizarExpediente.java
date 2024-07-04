@@ -4,18 +4,82 @@
  */
 package interfaces;
 
+import controlador.GestionDependencia;
+import controlador.GestionUsuario;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import modelos.Dependencia;
+import modelos.Expediente;
+import tda.Cola;
+
 /**
  *
- * @author Alonso
  */
 public class InterfazFinalizarExpediente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FinalizarExpediente
-     */
-    public InterfazFinalizarExpediente() {
+    private DefaultTableModel modeloTabla1;
+    private GestionDependencia objGestionDependencia; 
+    private JLabel labelTexto;
+    private GestionUsuario objGestionUsuarios;
+    private String nombreDependencia;
+    
+    
+    public InterfazFinalizarExpediente(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios, String nombreDependencia) {
         initComponents();
+        this.objGestionDependencia= objGestionDependencia; 
+        this.objGestionUsuarios=objGestionUsuarios;
+        this.nombreDependencia=nombreDependencia;
+        modeloTabla1=new DefaultTableModel();
+        modeloTabla1.addColumn("ID");
+        modeloTabla1.addColumn("Prioridad");      
+        modeloTabla1.addColumn("Documento");
+        modeloTabla1.addColumn("Interesado");
+        modeloTabla1.addColumn("Hora");      
+        //tabla1.setModel(modeloTabla1);
+        table3.setModel(modeloTabla1);
+        cargarInteresados(nombreDependencia);
+        System.out.println(nombreDependencia);
+        
     }
+    
+    private void cargarInteresados(String nombreDependencia) {
+        Dependencia dependenciaSeleccionada = null;
+        for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+            Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+            if (dep.getNombre().equals(nombreDependencia)) {
+                dependenciaSeleccionada = dep;
+                break;
+            }
+        }
+    
+
+        if (dependenciaSeleccionada != null) {
+            Cola<Expediente> expedientes = dependenciaSeleccionada.getColaExpedientesFinalizados();
+            int n = expedientes.longitud();
+            Cola<Expediente> temp = new Cola<>();
+            //txtNombreDependencia.setText(nombreDependencia);
+            for (int i = 1; i <= n; i++) {
+                Expediente intere = expedientes.desencolar();
+                if (intere != null) {
+                    String[] fila = new String[5];
+                    fila[0] = String.valueOf(intere.getNumExpediente());
+                    fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
+                    fila[2] = intere.getDocumento();
+                    fila[3] = String.valueOf(intere.getInteresado().getNombre());
+                    fila[4] = String.valueOf(intere.getTiempoExpediente());
+                    modeloTabla1.addRow(fila);
+                    temp.encolar(intere);
+                } else {
+                    System.err.println("Elemento nulo encontrado en la posición: " + i);
+                }
+            }
+            while (!temp.esVacia()) {
+                expedientes.encolar(temp.desencolar());
+            }
+        } else {
+            System.out.println("Dependencia no encontrada");
+        }
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +92,8 @@ public class InterfazFinalizarExpediente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table3 = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -43,24 +108,34 @@ public class InterfazFinalizarExpediente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("QUE ALGUIEN HAGA ESTO");
+        table3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(table3);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(85, 85, 85))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel2)
-                .addContainerGap(165, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -108,14 +183,14 @@ public class InterfazFinalizarExpediente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazFinalizarExpediente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table3;
     // End of variables declaration//GEN-END:variables
 }
