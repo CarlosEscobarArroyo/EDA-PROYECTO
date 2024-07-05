@@ -392,10 +392,10 @@ public class InterfazDependencia extends javax.swing.JFrame {
 
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
         // TODO add your handling code here:
-
-        InterfazFinalizarExpediente form = new InterfazFinalizarExpediente(objGestionDependencia, objGestionUsuarios, nombreDependencia);
-        form.setVisible(true);
-               
+//
+//        InterfazFinalizarExpediente form = new InterfazFinalizarExpediente(objGestionDependencia, objGestionUsuarios, nombreDependencia);
+//        form.setVisible(true);
+//               
         
     }//GEN-LAST:event_botonHistorialActionPerformed
 

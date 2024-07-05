@@ -80,5 +80,23 @@ public class GestionDependencia {
             }
         }
         return historialCompleto;
-    }  
+    }
+    
+    public Cola<Expediente> obtenerHistorialFinalizados() {
+        Cola<Expediente> historialFinalizados = new Cola<>();
+        int n = dependencias.longitud();
+        for (int i = 1; i <= n; i++) {
+            Cola<Expediente> colaExpedientesFinalizados = dependencias.iesimo(i).getColaExpedientesFinalizados();
+            Cola<Expediente> tempCola = new Cola<>();
+            while (!colaExpedientesFinalizados.esVacia()) {
+                Expediente expediente = colaExpedientesFinalizados.desencolar();
+                historialFinalizados.encolar(expediente);
+                tempCola.encolar(expediente);
+            }
+            while (!tempCola.esVacia()) {
+                colaExpedientesFinalizados.encolar(tempCola.desencolar());
+            }
+        }
+        return historialFinalizados;
+    }    
 }
