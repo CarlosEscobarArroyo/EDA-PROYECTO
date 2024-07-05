@@ -8,13 +8,14 @@ import modelos.*;
 import tda.*;
 import controlador.*;
 import javax.swing.JOptionPane;
-import java.time.LocalDateTime;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -24,15 +25,13 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private DefaultTableModel modeloTabla1;
     private GestionPersonal objGestionUsuarios;
-    private Administrador admin;
     public InterfazAdministrador() {
         initComponents();      
     }
     public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionPersonal objGestionUsuarios) {        
         initComponents();
-        CerrarVentanas();
         MostrarHora();
-        
+        iniciarVerificacionExpedientes();
         txtPresentacion.setText("Hola, "+"Mi estimado");
         
         this.objGestionDependencia= objGestionDependencia;
@@ -45,7 +44,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         tabla2.setModel(modeloTabla1);
         this.cargarInteresados();
     }
-    public void MostrarHora(){            
+     public void MostrarHora(){            
         Timer timer = new Timer(0, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -57,14 +56,38 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         });
         timer.start();
     }
+    public void iniciarVerificacionExpedientes() {
+        java.util.Timer timer = new java.util.Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                verificarExpedientes();
+            }
+        }, 0, 1000); // Verificar cada 1 segundo
+    }
     
-    public Administrador getAdmin() {
-        return admin;
+    public void mostrarAlerta(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Alerta", JOptionPane.WARNING_MESSAGE);
+    }
+    public void verificarExpedientes() {
+        Lista<Dependencia> dependencias = objGestionDependencia.getDependencias();
+        for (int i = 1; i <= dependencias.longitud(); i++) {
+            Dependencia dependencia = dependencias.iesimo(i);
+            Cola<Expediente> colaExpedientes = dependencia.getColaExpedientes();
+            Cola<Expediente> tempCola = new Cola<>();
+            while (!colaExpedientes.esVacia()) {
+                Expediente expediente = colaExpedientes.desencolar();
+                if (expediente.isHighPriorityAndOverdue()) {
+                    mostrarAlerta("El expediente con número " + expediente.getNumExpediente() + " de alta prioridad ha pasado los 20 segundos.");
+                }
+                tempCola.encolar(expediente);
+            }
+            while (!tempCola.esVacia()) {
+                colaExpedientes.encolar(tempCola.desencolar());
+            }
+        }
     }
 
-    public void setAdmin(Administrador admin) {
-        this.admin = admin;
-    }
     private void cargarInteresados() {
         Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
         int n = dependencia.longitud();
@@ -81,39 +104,6 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             }
         }
     }
-    private void CerrarVentanas(){
-        IniciarSesión iniciarSesion = new IniciarSesión();
-        InterfazCrearDependencia crearDependencia = new InterfazCrearDependencia();
-        InterfazCrearExpediente crearExpediente = new InterfazCrearExpediente();
-        InterfazDependencia dependencia = new InterfazDependencia();
-        InterfazModificadorExpediente modificarExpediente = new InterfazModificadorExpediente();
-        InterfazMoverExpediente moverExpediente = new InterfazMoverExpediente();
-        InterfazVerDatosExpediente verDatosExpediente = new InterfazVerDatosExpediente();
-        if (iniciarSesion != null && iniciarSesion.isVisible()) {
-            iniciarSesion.setVisible(false);
-        }
-        if (crearDependencia != null && crearDependencia.isVisible()) {
-            crearDependencia.setVisible(false);
-        }
-        if (crearExpediente != null && crearExpediente.isVisible()) {
-            crearExpediente.setVisible(false);
-        }
-        if (dependencia != null && dependencia.isVisible()) {
-            dependencia.setVisible(false);
-        }
-        if (modificarExpediente != null && modificarExpediente.isVisible()) {
-            modificarExpediente.setVisible(false);
-        }
-        if (moverExpediente != null && moverExpediente.isVisible()) {
-            moverExpediente.setVisible(false);
-        }
-        if (verDatosExpediente != null && verDatosExpediente.isVisible()) {
-            verDatosExpediente.setVisible(false);
-        }
-        
-    }
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

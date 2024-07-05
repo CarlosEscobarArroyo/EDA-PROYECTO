@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelos;
+import java.time.Duration;
 import java.time.LocalTime;
 import tda.Lista;
 
@@ -16,7 +17,7 @@ public class Expediente {
     private String documento;
     private Interesado interesado;
     private LocalTime tiempoExpediente;
-    private static int contador=0;
+    private static int contador=001;
     private String dependenciaActual;
     private String estado;
     private Lista<String> dependenciasRecorridas;
@@ -126,6 +127,14 @@ public class Expediente {
         System.out.println("Dependencia Agregada Al Recorrido");
         dependenciasRecorridas.agregar(nombreDependenciaRecorrida);
     }
+    public boolean isHighPriorityAndOverdue() {
+        if (this.prioridad2.getPrioridad().equals("Alta")) {
+            Duration duration = Duration.between(this.tiempoExpediente, LocalTime.now());
+            return duration.getSeconds() == 20;
+        }
+        return false;
+    }
+
     
 
 }
