@@ -23,12 +23,12 @@ import java.time.format.DateTimeFormatter;
 public class InterfazAdministrador extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private DefaultTableModel modeloTabla1;
-    private GestionUsuario objGestionUsuarios;
+    private GestionPersonal objGestionUsuarios;
     private Administrador admin;
     public InterfazAdministrador() {
         initComponents();      
     }
-    public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {        
+    public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionPersonal objGestionUsuarios) {        
         initComponents();
         CerrarVentanas();
         MostrarHora();

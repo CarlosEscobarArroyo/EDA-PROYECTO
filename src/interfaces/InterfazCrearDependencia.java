@@ -14,7 +14,7 @@ import tda.*;
  * @author Alonso
  */
 public class InterfazCrearDependencia extends javax.swing.JFrame {
-    private GestionUsuario objGestionUsuarios;
+    private GestionPersonal objGestionUsuarios;
     private GestionDependencia objGestionDependencia;
     /**
      * Creates new form InterfazCrearDependencia
@@ -22,12 +22,12 @@ public class InterfazCrearDependencia extends javax.swing.JFrame {
     public InterfazCrearDependencia() {
         initComponents();
     }
-    public InterfazCrearDependencia(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {
+    public InterfazCrearDependencia(GestionDependencia objGestionDependencia, GestionPersonal objGestionUsuarios) {
         initComponents();
         this.objGestionUsuarios= objGestionUsuarios;
         this.objGestionDependencia=objGestionDependencia;
         DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
-        Lista<Usuario> usuarios = objGestionUsuarios.getUsuarios();
+        Lista<Encargados> usuarios = objGestionUsuarios.getEncargados();
         int n=usuarios.longitud();
         for (int i = 1; i <= n; i++) {
             Usuario user=usuarios.iesimo(i);

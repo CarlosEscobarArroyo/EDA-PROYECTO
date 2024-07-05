@@ -16,12 +16,12 @@ import tda.Lista;
  */
 public class InterfazCrearExpediente extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
-    private GestionUsuario objGestionUsuarios;
+    private GestionPersonal objGestionUsuarios;
 
     public InterfazCrearExpediente() {
         initComponents();     
     }
-    public InterfazCrearExpediente(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {
+    public InterfazCrearExpediente(GestionDependencia objGestionDependencia, GestionPersonal objGestionUsuarios) {
         initComponents();
         this.objGestionDependencia= objGestionDependencia;
         this.objGestionUsuarios=objGestionUsuarios;

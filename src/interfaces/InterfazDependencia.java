@@ -21,12 +21,12 @@ public class InterfazDependencia extends javax.swing.JFrame {
     private DefaultTableModel modeloTabla1;
     private GestionDependencia objGestionDependencia; 
     private JLabel labelTexto;
-    private GestionUsuario objGestionUsuarios;
+    private GestionPersonal objGestionUsuarios;
     private String nombreDependencia;
     public InterfazDependencia() {
         initComponents();
     }
-    public InterfazDependencia(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios, String nombreDependencia) {
+    public InterfazDependencia(GestionDependencia objGestionDependencia, GestionPersonal objGestionUsuarios, String nombreDependencia) {
         initComponents();
         this.objGestionDependencia= objGestionDependencia; 
         this.objGestionUsuarios=objGestionUsuarios;
@@ -279,13 +279,16 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazDependencia.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        botonHistorial.setBackground(new java.awt.Color(51, 51, 51));
+        botonHistorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        botonHistorial.setForeground(new java.awt.Color(255, 255, 255));
         botonHistorial.setText("historial");
         botonHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonHistorialActionPerformed(evt);
             }
         });
-        jPanel1.add(botonHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
+        jPanel1.add(botonHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -15,7 +15,7 @@ import controlador.*;
 public class IniciarSesión extends javax.swing.JFrame {
     private GestionAdministrador gestionAdministrador;
     private GestionDependencia objGestionDependencia;
-    private GestionUsuario objGestionUsuarios;
+    private GestionPersonal objGestionUsuarios;
     /**
      * Creates new form IniciarSesión
      */
@@ -23,7 +23,7 @@ public class IniciarSesión extends javax.swing.JFrame {
         initComponents();
         this.gestionAdministrador = new GestionAdministrador();
         this.objGestionDependencia= new GestionDependencia();
-        this.objGestionUsuarios= new GestionUsuario();
+        this.objGestionUsuarios= new GestionPersonal();
     }
 
 
