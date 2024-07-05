@@ -37,7 +37,9 @@ public class InterfazTotalExpedientes extends javax.swing.JFrame{
         modeloTabla1.addColumn("Documento");
         modeloTabla1.addColumn("Interesado");
         modeloTabla1.addColumn("Estado");      
-        modeloTabla1.addColumn("Hora");      
+        modeloTabla1.addColumn("Hora");
+        modeloTabla1.addColumn("Dependencia");
+
         //tabla1.setModel(modeloTabla1);
         txtTable3.setModel(modeloTabla1);
         cargarInteresados();
@@ -49,13 +51,14 @@ public class InterfazTotalExpedientes extends javax.swing.JFrame{
             for (int i = 1; i <= n; i++) {
                 Expediente intere = expedientes.desencolar();
                 if (intere != null) {
-                    String[] fila = new String[6];
+                    String[] fila = new String[7];
                     fila[0] = String.valueOf(intere.getNumExpediente());
                     fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
                     fila[2] = intere.getDocumento();
                     fila[3] = String.valueOf(intere.getInteresado().getNombre());
                     fila[4] = intere.getEstado();
                     fila[5] = String.valueOf(intere.getTiempoExpediente());
+                    fila[6] = String.valueOf(intere.getDependenciaActual());
                     modeloTabla1.addRow(fila);
                     temp.encolar(intere);
                 } else {
@@ -118,25 +121,24 @@ public class InterfazTotalExpedientes extends javax.swing.JFrame{
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 93, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(85, 85, 85))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addContainerGap())))))
+                        .addGap(0, 457, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         pack();
