@@ -103,12 +103,12 @@ public class InterfazMoverExpediente extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("SELECCIONE DEPENDENCIA");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("A MOVER EXPEDIENTE");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
