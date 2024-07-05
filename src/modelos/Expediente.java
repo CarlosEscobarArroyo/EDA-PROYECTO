@@ -20,6 +20,7 @@ public class Expediente {
     private String dependenciaActual;
     private String estado;
     private Lista<String> dependenciasRecorridas;
+    private LocalTime horaFinalizada;
     
     public Expediente(Prioridad prioridad2, String documento, Interesado interesado, String dependenciaActual){
         this.numExpediente=contador++;                
@@ -98,6 +99,14 @@ public class Expediente {
     public void setTiempoExpediente(LocalTime tiempoExpediente) {
         this.tiempoExpediente = tiempoExpediente;
     }  
+
+    public LocalTime getHoraFinalizada() {
+        return horaFinalizada;
+    }
+
+    public void setHoraFinalizada(LocalTime horaFinalizada) {
+        this.horaFinalizada = horaFinalizada;
+    }
     
     public static int obtenerValorPrioridad(String prioridad2) {
         switch (prioridad2) {

@@ -11,15 +11,28 @@ import modelos.*;
  * @author brina
  */
 public class GestionDependencia {
-    Lista<Dependencia> dependencias;
+    private Lista<Dependencia> dependencias;
+    private Cola<Expediente> expedientes;
     //HOLA
     public GestionDependencia() {
         this.dependencias=new Lista<>();
-        Dependencia dependencia1=new Dependencia("DUSAR", "Gerente de DUSAR");
-        Dependencia dependencia2=new Dependencia("TRAMITES", "Gerente de TRAMITES");
+        this.expedientes=new Cola<>();
+        Dependencia dependencia1=new Dependencia("DCG", "Gerente de DUSAR");
+        Dependencia dependencia2=new Dependencia("EDA", "Gerente de TRAMITES");
         dependencias.agregar(dependencia1);
         dependencias.agregar(dependencia2);
-    
+        
+        Prioridad prioridad2=new Prioridad("Media");    
+        Prioridad prioridad=new Prioridad("Alta");    
+
+        Interesado interesado=new Interesado("Juan", 42,98982349, "av@gmail.com");        
+        Interesado interesado2=new Interesado("Jose", 43,89893448, "df@gmail.com");
+        
+        Expediente expediente1=new Expediente(prioridad, "Notas", interesado2,"DCG");
+        dependencia1.agregarExpediente(expediente1); 
+        Expediente expediente2=new Expediente(prioridad2, "Carné", interesado,"EDA");
+        dependencia2.agregarExpediente(expediente2);
+       
     }
 
     public Lista<Dependencia> getDependencias() {
@@ -51,6 +64,21 @@ public class GestionDependencia {
         }
         return false; 
     }
-    
-    
+    public Cola<Expediente> obtenerHistorialCompleto() {
+        Cola<Expediente> historialCompleto = new Cola<>();
+        int n= dependencias.longitud();
+        for (int i = 1; i <= n; i++) {
+            Cola<Expediente> colaExpedientes = dependencias.iesimo(i).getColaExpedientes();
+            Cola<Expediente> tempCola = new Cola<>();
+            while (!colaExpedientes.esVacia()) {
+                Expediente expediente = colaExpedientes.desencolar();
+                historialCompleto.encolar(expediente);
+                tempCola.encolar(expediente);
+            }
+            while (!tempCola.esVacia()) {
+                colaExpedientes.encolar(tempCola.desencolar());
+            }
+        }
+        return historialCompleto;
+    }  
 }

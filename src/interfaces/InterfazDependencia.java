@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import modelos.*;
 import tda.*;
 import controlador.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
@@ -34,12 +36,10 @@ public class InterfazDependencia extends javax.swing.JFrame {
         modeloTabla1.addColumn("Prioridad");      
         modeloTabla1.addColumn("Documento");
         modeloTabla1.addColumn("Interesado");
+        modeloTabla1.addColumn("Estado");      
         modeloTabla1.addColumn("Hora");      
-        //tabla1.setModel(modeloTabla1);
         table3.setModel(modeloTabla1);
-        cargarInteresados(nombreDependencia);
-        System.out.println(nombreDependencia);
-        
+        cargarInteresados(nombreDependencia);        
     }   
     
     private void cargarInteresados(String nombreDependencia) {
@@ -51,8 +51,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 break;
             }
         }
-    
-
         if (dependenciaSeleccionada != null) {
             Cola<Expediente> expedientes = dependenciaSeleccionada.getColaExpedientes();
             int n = expedientes.longitud();
@@ -61,12 +59,13 @@ public class InterfazDependencia extends javax.swing.JFrame {
             for (int i = 1; i <= n; i++) {
                 Expediente intere = expedientes.desencolar();
                 if (intere != null) {
-                    String[] fila = new String[5];
+                    String[] fila = new String[6];
                     fila[0] = String.valueOf(intere.getNumExpediente());
                     fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
                     fila[2] = intere.getDocumento();
                     fila[3] = String.valueOf(intere.getInteresado().getNombre());
-                    fila[4] = String.valueOf(intere.getTiempoExpediente());
+                    fila[4] = intere.getEstado();
+                    fila[5] = String.valueOf(intere.getTiempoExpediente());
                     modeloTabla1.addRow(fila);
                     temp.encolar(intere);
                 } else {
@@ -144,6 +143,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table3 = new javax.swing.JTable();
+        botonFinalizar = new javax.swing.JButton();
         txtNombreDependencia = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -155,7 +155,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
         OrdenarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        botonFinalizar = new javax.swing.JButton();
         botonHistorial = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
@@ -179,6 +178,18 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table3);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 480, 110));
+
+        botonFinalizar.setBackground(new java.awt.Color(255, 51, 0));
+        botonFinalizar.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        botonFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        botonFinalizar.setText("Finalizar");
+        botonFinalizar.setBorderPainted(false);
+        botonFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFinalizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 100, -1));
 
         txtNombreDependencia.setBackground(new java.awt.Color(102, 102, 102));
         txtNombreDependencia.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
@@ -229,7 +240,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 botonVerDatosActionPerformed(evt);
             }
         });
-        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
+        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 110, -1));
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -268,24 +279,13 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazDependencia.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        botonFinalizar.setBackground(new java.awt.Color(255, 51, 0));
-        botonFinalizar.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        botonFinalizar.setForeground(new java.awt.Color(255, 255, 255));
-        botonFinalizar.setText("Finalizar");
-        botonFinalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFinalizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, -1, -1));
-
         botonHistorial.setText("historial");
         botonHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonHistorialActionPerformed(evt);
             }
         });
-        jPanel1.add(botonHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
+        jPanel1.add(botonHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,7 +298,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -381,9 +381,10 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 }
             }
             Expediente expediente= dependenciaSeleccionada.removerExpediente(id);
+            expediente.setEstado("Finalizado");
+            expediente.setHoraFinalizada(LocalTime.now());
             dependenciaSeleccionada.agregarExpedienteFinalizado(expediente);
-            actualizarTabla(dependenciaSeleccionada.getColaExpedientes());            
-                    
+            actualizarTabla(dependenciaSeleccionada.getColaExpedientes());                                
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
         } 

@@ -17,7 +17,7 @@ public class Dependencia {
     private String encargado;
     private Cola<Expediente> colaExpedientes;
     private Cola<Expediente> colaExpedientesFinalizados;
-
+    
     
     public Dependencia(String nombre, String encargado) {
         this.nombre = nombre;
@@ -79,10 +79,10 @@ public class Dependencia {
     }
     
     
-public void agregarExpedienteFinalizado(Expediente expediente) {
+    public void agregarExpedienteFinalizado(Expediente expediente) {
         colaExpedientesFinalizados.encolar(expediente);
     }    
-   public void actualizarExpediente(Expediente expedienteNuevo, int idExpedienteAntiguo) {
+    public void actualizarExpediente(Expediente expedienteNuevo, int idExpedienteAntiguo) {
        Cola<Expediente> tempCola = new Cola<>();
        Expediente expedienteAntiguo = null;
         while (!colaExpedientes.esVacia()) {

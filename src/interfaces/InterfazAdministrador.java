@@ -8,6 +8,14 @@ import modelos.*;
 import tda.*;
 import controlador.*;
 import javax.swing.JOptionPane;
+import java.time.LocalDateTime;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author brina
@@ -16,13 +24,17 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private GestionDependencia objGestionDependencia;
     private DefaultTableModel modeloTabla1;
     private GestionUsuario objGestionUsuarios;
+    private Administrador admin;
     public InterfazAdministrador() {
         initComponents();      
     }
-    public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {
-        
+    public InterfazAdministrador(GestionDependencia objGestionDependencia, GestionUsuario objGestionUsuarios) {        
         initComponents();
         CerrarVentanas();
+        MostrarHora();
+        
+        txtPresentacion.setText("Hola, "+"Mi estimado");
+        
         this.objGestionDependencia= objGestionDependencia;
         this.objGestionUsuarios=objGestionUsuarios;
         modeloTabla1 = new DefaultTableModel();
@@ -33,7 +45,26 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         tabla2.setModel(modeloTabla1);
         this.cargarInteresados();
     }
+    public void MostrarHora(){            
+        Timer timer = new Timer(0, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDateTime = now.format(formatter);
+            txthora.setText("Hora: "+formattedDateTime);
+        }
+        });
+        timer.start();
+    }
+    
+    public Administrador getAdmin() {
+        return admin;
+    }
 
+    public void setAdmin(Administrador admin) {
+        this.admin = admin;
+    }
     private void cargarInteresados() {
         Lista<Dependencia> dependencia = objGestionDependencia.getDependencias();
         int n = dependencia.longitud();
@@ -93,17 +124,14 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPresentacion = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla2 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
+        Expedientes = new javax.swing.JButton();
+        txthora = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -113,41 +141,15 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Nombre:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 80, -1));
-
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("DNI:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 80, -1));
-
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel9.setText("Contraseña:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
-
-        jPasswordField1.setText("jPaeld1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 90, -1));
+        txtPresentacion.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        txtPresentacion.setForeground(new java.awt.Color(51, 51, 51));
+        txtPresentacion.setText("NombreAdmin");
+        jPanel2.add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Dependencias Disponibles");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -182,7 +184,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(255, 51, 0));
         jButton6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Iniciar Expediente");
+        jButton6.setText("Crear Expediente");
         jButton6.setBorderPainted(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +192,23 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
+
+        Expedientes.setBackground(new java.awt.Color(255, 51, 0));
+        Expedientes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        Expedientes.setForeground(new java.awt.Color(255, 255, 255));
+        Expedientes.setText("Ver Expedientes");
+        Expedientes.setBorderPainted(false);
+        Expedientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExpedientesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 150, 30));
+
+        txthora.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        txthora.setForeground(new java.awt.Color(0, 0, 0));
+        txthora.setText("Hora");
+        jPanel2.add(txthora, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(255, 51, 0));
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -201,7 +220,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, 30));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazAdministradorFONDO.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
@@ -248,13 +267,12 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void ExpedientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExpedientesActionPerformed
+        InterfazTotalExpedientes form = new InterfazTotalExpedientes(objGestionDependencia,objGestionUsuarios);
+        form.setVisible(true);
+        this.dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_ExpedientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,19 +310,16 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Expedientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tabla2;
+    private javax.swing.JLabel txtPresentacion;
+    private javax.swing.JLabel txthora;
     // End of variables declaration//GEN-END:variables
 }
