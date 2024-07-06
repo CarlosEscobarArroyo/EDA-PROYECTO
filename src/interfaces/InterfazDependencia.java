@@ -41,6 +41,11 @@ public class InterfazDependencia extends javax.swing.JFrame {
         modeloTabla1.addColumn("Hora");      
         table3.setModel(modeloTabla1);
         
+        CargarBOTON();
+        cargarInteresados(nombreDependencia);        
+    }   
+    
+    private void CargarBOTON(){
         DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
         Dependencia dependenciaSeleccionada = null;
         for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
@@ -62,9 +67,8 @@ public class InterfazDependencia extends javax.swing.JFrame {
             expedientes.encolar(temp.desencolar());
         }
         this.txtBuscarID.setModel(comboboxModel);
-        cargarInteresados(nombreDependencia);        
-    }   
-    
+
+    }
     private void cargarInteresados(String nombreDependencia) {
         Dependencia dependenciaSeleccionada = null;
         for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
@@ -461,6 +465,9 @@ public class InterfazDependencia extends javax.swing.JFrame {
             expediente.setHoraFinalizada(LocalTime.now());
             dependenciaSeleccionada.agregarExpedienteFinalizado(expediente);
             actualizarTabla(dependenciaSeleccionada.getColaExpedientes());                                
+            
+            CargarBOTON();
+        
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila primero.");
         } 

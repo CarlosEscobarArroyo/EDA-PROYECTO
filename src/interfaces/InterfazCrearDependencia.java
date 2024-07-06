@@ -160,6 +160,10 @@ public class InterfazCrearDependencia extends javax.swing.JFrame {
         try {
             String nombre = txtNombre2.getText();
             String Encargado = (String)jComboBox1.getSelectedItem();
+            if (nombre.isEmpty() || Encargado == null) {
+                JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;  // Salir del método si falta algún valor
+            }
             Dependencia dependencia= new Dependencia(nombre, Encargado);
             objGestionDependencia.AñadirDependencia(dependencia);
             // Limpiar campos
