@@ -25,6 +25,13 @@ public class IniciarSesión extends javax.swing.JFrame {
         this.objGestionDependencia= new GestionDependencia();
         this.objGestionUsuarios= new GestionPersonal();
     }
+    public IniciarSesión(GestionDependencia objGestionDependencia,GestionPersonal objGestionUsuarios) {
+        initComponents();
+        this.gestionAdministrador = new GestionAdministrador();
+        this.objGestionDependencia= objGestionDependencia;
+        this.objGestionUsuarios= objGestionUsuarios;
+    }
+    
 
 
     /**

@@ -32,7 +32,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         initComponents();
         MostrarHora();
         iniciarVerificacionExpedientes();
-        txtPresentacion.setText("Hola, "+"Mi estimado");
+        txtPresentacion.setText("Bienvenido ");
         
         this.objGestionDependencia= objGestionDependencia;
         this.objGestionUsuarios=objGestionUsuarios;
@@ -78,7 +78,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             while (!colaExpedientes.esVacia()) {
                 Expediente expediente = colaExpedientes.desencolar();
                 if (expediente.isHighPriorityAndOverdue()) {
-                    mostrarAlerta("El expediente con número " + expediente.getNumExpediente() + " de alta prioridad ha pasado los 20 segundos.");
+                    mostrarAlerta("El expediente con ID " + expediente.getNumExpediente() + " y ubicado en la dependencia "+expediente.getDependenciaActual()+" necesita ser atendido.");
                 }
                 tempCola.encolar(expediente);
             }
@@ -124,6 +124,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         txthora = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,7 +135,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
         txtPresentacion.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
         txtPresentacion.setForeground(new java.awt.Color(51, 51, 51));
-        txtPresentacion.setText("NombreAdmin");
+        txtPresentacion.setText("text");
         jPanel2.add(txtPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -182,19 +183,19 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, 30));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 210, 30));
 
         Expedientes.setBackground(new java.awt.Color(255, 51, 0));
         Expedientes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         Expedientes.setForeground(new java.awt.Color(255, 255, 255));
-        Expedientes.setText("Ver Expedientes");
+        Expedientes.setText("Historial de Expedientes");
         Expedientes.setBorderPainted(false);
         Expedientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExpedientesActionPerformed(evt);
             }
         });
-        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 160, 30));
+        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 210, 30));
 
         txthora.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         txthora.setText("Hora");
@@ -210,7 +211,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 170, 30));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 200, 30));
 
         jButton7.setBackground(new java.awt.Color(255, 51, 0));
         jButton7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -222,7 +223,20 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 170, 30));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 200, 30));
+
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
+        jButton3.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 51, 51));
+        jButton3.setText("Cerrar sesión");
+        jButton3.setAutoscrolls(true);
+        jButton3.setBorderPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 10, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazAdministradorFONDO.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
@@ -278,7 +292,17 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        InterfazCrearPersonal form=new InterfazCrearPersonal(objGestionDependencia, objGestionUsuarios);
+        form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        IniciarSesión iniciar=new IniciarSesión(objGestionDependencia, objGestionUsuarios);
+        iniciar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,6 +342,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Expedientes;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

@@ -10,6 +10,7 @@ import tda.*;
 import controlador.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
@@ -39,6 +40,28 @@ public class InterfazDependencia extends javax.swing.JFrame {
         modeloTabla1.addColumn("Estado");      
         modeloTabla1.addColumn("Hora");      
         table3.setModel(modeloTabla1);
+        
+        DefaultComboBoxModel<String> comboboxModel= new DefaultComboBoxModel<>();
+        Dependencia dependenciaSeleccionada = null;
+        for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+            Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+            if (dep.getNombre().equals(nombreDependencia)) {
+                dependenciaSeleccionada = dep;
+                break;
+            }
+        }
+        Cola<Expediente> expedientes=dependenciaSeleccionada.getColaExpedientes();
+        
+        Cola<Expediente> temp = new Cola<>();
+        while (!expedientes.esVacia()) {
+            Expediente expediente = expedientes.desencolar();
+            comboboxModel.addElement(String.valueOf(expediente.getNumExpediente()));
+            temp.encolar(expediente);
+        }
+        while (!temp.esVacia()) {
+            expedientes.encolar(temp.desencolar());
+        }
+        this.txtBuscarID.setModel(comboboxModel);
         cargarInteresados(nombreDependencia);        
     }   
     
@@ -79,6 +102,52 @@ public class InterfazDependencia extends javax.swing.JFrame {
             System.out.println("Dependencia no encontrada");
         }
     }
+    private void BuscarID(String nombreDependencia) {
+        Dependencia dependenciaSeleccionada = null;
+        for (int i = 1; i <= objGestionDependencia.getDependencias().longitud(); i++) {
+            Dependencia dep = objGestionDependencia.getDependencias().iesimo(i);
+            if (dep.getNombre().equals(nombreDependencia)) {
+                dependenciaSeleccionada = dep;
+                break;
+            }
+        }
+
+        if (dependenciaSeleccionada != null) {
+            Cola<Expediente> expedientes = dependenciaSeleccionada.getColaExpedientes();
+            int n = expedientes.longitud();
+            Cola<Expediente> temp = new Cola<>();
+            txtNombreDependencia.setText(nombreDependencia);
+            modeloTabla1.setRowCount(0); // Limpiar la tabla antes de agregar nuevas filas
+
+            String buscarID = (String) txtBuscarID.getSelectedItem(); // Obtener el valor del campo de texto para búsqueda por ID
+            boolean buscarPorID = !buscarID.isEmpty(); // Verificar si se ingresó un ID para buscar
+
+            for (int i = 1; i <= n; i++) {
+                Expediente intere = expedientes.desencolar();
+                if (intere != null) {
+                    if (!buscarPorID || String.valueOf(intere.getNumExpediente()).equals(buscarID)) {
+                        String[] fila = new String[6];
+                        fila[0] = String.valueOf(intere.getNumExpediente());
+                        fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
+                        fila[2] = intere.getDocumento();
+                        fila[3] = intere.getInteresado().getNombre();
+                        fila[4] = intere.getEstado();
+                        fila[5] = intere.getTiempoExpediente().toString();
+                        modeloTabla1.addRow(fila);
+                    }
+                    temp.encolar(intere);
+                } else {
+                    System.err.println("Elemento nulo encontrado en la posición: " + i);
+                }
+            }
+
+            while (!temp.esVacia()) {
+                expedientes.encolar(temp.desencolar());
+            }
+        } else {
+            System.out.println("Dependencia no encontrada");
+        }
+    }
     
     public Cola<Expediente> OrdenarColaPorTipo(Cola<Expediente> expedientes, String nombreDependencia){
         Dependencia dependenciaActual = null;
@@ -110,7 +179,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         while (!colaOrdenada.esVacia()) {
             Expediente intere = colaOrdenada.desencolar();
             if (intere != null) {
-                String[] fila = new String[5];
+                String[] fila = new String[6];
                 fila[0] = String.valueOf(intere.getNumExpediente());
                 fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
                 fila[2] = intere.getDocumento();
@@ -155,6 +224,9 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jPrioridadOLlegada = new javax.swing.JComboBox<>();
         OrdenarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtBuscarID = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
@@ -250,7 +322,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, -1, -1));
 
         jPrioridadOLlegada.setBackground(new java.awt.Color(204, 204, 204));
         jPrioridadOLlegada.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
@@ -260,7 +332,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 jPrioridadOLlegadaActionPerformed(evt);
             }
         });
-        jPanel1.add(jPrioridadOLlegada, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, -1));
+        jPanel1.add(jPrioridadOLlegada, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 110, 30));
 
         OrdenarBtn.setBackground(new java.awt.Color(204, 204, 204));
         OrdenarBtn.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -270,11 +342,27 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 OrdenarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(OrdenarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 100, -1));
+        jPanel1.add(OrdenarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        jLabel1.setText("Ordenar por:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 30));
+        jLabel1.setText("Buscar por ID");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, 30));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        jLabel4.setText("Ordenar por:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, 30));
+
+        txtBuscarID.setBackground(new java.awt.Color(204, 204, 204));
+        txtBuscarID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(txtBuscarID, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 70, 30));
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 70, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazDependencia.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -378,6 +466,11 @@ public class InterfazDependencia extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_botonFinalizarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BuscarID(nombreDependencia);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -420,16 +513,19 @@ public class InterfazDependencia extends javax.swing.JFrame {
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMover;
     private javax.swing.JButton botonVerDatos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jPrioridadOLlegada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table3;
+    private javax.swing.JComboBox<String> txtBuscarID;
     private javax.swing.JLabel txtNombreDependencia;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,12 @@
 package interfaces;
 
 import controlador.*;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelos.*;
 import tda.Lista;
 
@@ -39,6 +43,10 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
             }
         }
         jComboBox1.setModel(comboboxModel);
+        addPlaceholder(txtNombre, "Nombre");
+        addPlaceholder(txtDNI, "DNI");
+        addPlaceholder(txtTelefono, "Teléfono");
+        addPlaceholder(txtEmail, "correo@ejemplo.com");
     }
 
     /**
@@ -242,9 +250,31 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         InterfazAdministrador form = new InterfazAdministrador(objGestionDependencia,objGestionUsuarios);
         form.setVisible(true);
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+       private void addPlaceholder(JTextField textField, String placeholder) {
+        textField.setText(placeholder);
+        textField.setForeground(Color.GRAY);
 
+        textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(placeholder);
+                }
+            }
+        });
+    }
     private void txtPrioridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrioridadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrioridadActionPerformed
@@ -258,6 +288,10 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
             String informacion = txtInfo.getText();
             String dependenciaNombre = (String)jComboBox1.getSelectedItem();
             String prioridad1 = (String)txtPrioridad.getSelectedItem();
+            if (!email.contains("@")) {
+                JOptionPane.showMessageDialog(this, "El correo debe contener '@'.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             Interesado interesado = new Interesado(nombre, dni, telefono, email);
             Prioridad prioridad = new Prioridad(prioridad1);
@@ -280,6 +314,10 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
             txtInfo.setText("");
             txtNombre.setText("");
             txtTelefono.setText("");
+            addPlaceholder(txtNombre, "Nombre");
+            addPlaceholder(txtDNI, "DNI");
+            addPlaceholder(txtTelefono, "Teléfono");
+            addPlaceholder(txtEmail, "correo@ejemplo.com");
             JOptionPane.showMessageDialog(this, "Expediente creado exitosamente.");
         }catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);

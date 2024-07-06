@@ -4,9 +4,12 @@
  */
 package interfaces;
 import controlador.*;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
 import javax.swing.*;
 import modelos.*;
 import tda.*;
+import java.awt.event.FocusListener;
 
 /**
  *
@@ -25,6 +28,10 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
         initComponents();
         this.objGestionUsuarios= objGestionUsuarios;
         this.objGestionDependencia=objGestionDependencia;
+        addPlaceholder(txtNombre, "Nombre");
+        addPlaceholder(txtDNI1, "DNI");
+        addPlaceholder(txtFono, "Teléfono");
+        addPlaceholder(txtCorreo, "correo@ejemplo.com");
     }
 
     /**
@@ -39,10 +46,14 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
         txtPersonal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtDNI = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtDNI1 = new javax.swing.JTextField();
+        txtFono = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,22 +66,22 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        jLabel2.setText("Correo:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("DNI:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
-        txtDNI.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        txtDNI.setForeground(new java.awt.Color(51, 51, 51));
-        txtDNI.addActionListener(new java.awt.event.ActionListener() {
+        txtCorreo.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(51, 51, 51));
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDNIActionPerformed(evt);
+                txtCorreoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 180, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 51, 0));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
@@ -102,26 +113,91 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 180, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 180, -1));
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("Nombre:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Telefono:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
+
+        txtDNI1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        txtDNI1.setForeground(new java.awt.Color(51, 51, 51));
+        txtDNI1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDNI1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtDNI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 180, -1));
+
+        txtFono.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        txtFono.setForeground(new java.awt.Color(51, 51, 51));
+        txtFono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFonoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtFono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 180, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazCrearDependenciaFONDO.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void addPlaceholder(JTextField textField, String placeholder) {
+        textField.setText(placeholder);
+        textField.setForeground(Color.GRAY);
 
+        textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(placeholder);
+                }
+            }
+        });
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String nombre = txtNombre.getText();
-            int dni = Integer.parseInt(txtDNI.getText());
-            Encargados encargado= new Encargados(nombre, dni);
-            objGestionUsuarios.agregar(encargado);
-            // Limpiar campos
-            txtDNI.setText("");
-            JOptionPane.showMessageDialog(this, "Encargado creada exitosamente.");
-        }catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            int dni = Integer.parseInt(txtDNI1.getText());
+            int telefono = Integer.parseInt(txtFono.getText());
+            String correo = txtCorreo.getText();
 
+            if (!correo.contains("@")) {
+                JOptionPane.showMessageDialog(this, "El correo debe contener '@'.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Encargados encargado = new Encargados(nombre, dni, telefono, correo);
+            objGestionUsuarios.agregar(encargado);
+
+            // Limpiar campos
+            txtNombre.setText("");
+            txtDNI1.setText("");
+            txtFono.setText("");
+            txtCorreo.setText("");
+            addPlaceholder(txtNombre, "Nombre");
+            addPlaceholder(txtDNI1, "DNI");
+            addPlaceholder(txtFono, "Teléfono");
+            addPlaceholder(txtCorreo, "correo@ejemplo.com");
+            
+            JOptionPane.showMessageDialog(this, "Encargado creado exitosamente.");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -133,13 +209,21 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDNIActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtDNI1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNI1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDNI1ActionPerformed
+
+    private void txtFonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +266,11 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtDNI;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDNI1;
+    private javax.swing.JTextField txtFono;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JLabel txtPersonal;
     // End of variables declaration//GEN-END:variables

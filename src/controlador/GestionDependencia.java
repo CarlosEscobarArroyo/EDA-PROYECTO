@@ -17,21 +17,21 @@ public class GestionDependencia {
     public GestionDependencia() {
         this.dependencias=new Lista<>();
         this.expedientes=new Cola<>();
-        Dependencia dependencia1=new Dependencia("DCG", "Gerente de DUSAR");
-        Dependencia dependencia2=new Dependencia("EDA", "Gerente de TRAMITES");
-        dependencias.agregar(dependencia1);
-        dependencias.agregar(dependencia2);
-        
-        Prioridad prioridad2=new Prioridad("Media");    
-        Prioridad prioridad=new Prioridad("Alta");    
-
-        Interesado interesado=new Interesado("Juan", 42,98982349, "av@gmail.com");        
-        Interesado interesado2=new Interesado("Jose", 43,89893448, "df@gmail.com");
-        
-        Expediente expediente1=new Expediente(prioridad, "Notas", interesado2,"DCG");
-        dependencia1.agregarExpediente(expediente1); 
-        Expediente expediente2=new Expediente(prioridad2, "Carné", interesado,"EDA");
-        dependencia2.agregarExpediente(expediente2);
+//        Dependencia dependencia1=new Dependencia("DCG", "Gerente de DUSAR");
+//        Dependencia dependencia2=new Dependencia("EDA", "Gerente de TRAMITES");
+//        dependencias.agregar(dependencia1);
+//        dependencias.agregar(dependencia2);
+//        
+//        Prioridad prioridad2=new Prioridad("Media");    
+//        Prioridad prioridad=new Prioridad("Alta");    
+//
+//        Interesado interesado=new Interesado("Juan", 42,98982349, "av@gmail.com");        
+//        Interesado interesado2=new Interesado("Jose", 43,89893448, "df@gmail.com");
+//        
+//        Expediente expediente1=new Expediente(prioridad, "Notas", interesado2,"DCG");
+//        dependencia1.agregarExpediente(expediente1); 
+//        Expediente expediente2=new Expediente(prioridad2, "Carné", interesado,"EDA");
+//        dependencia2.agregarExpediente(expediente2);
        
     }
 
