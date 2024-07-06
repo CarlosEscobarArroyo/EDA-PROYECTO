@@ -22,6 +22,9 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
     
     public InterfazVerDatosExpediente() {
         initComponents();
+        modeloTabla1=new DefaultTableModel();
+        modeloTabla1.addColumn("Dependencias recorridas");   
+        tablaDependenciasRecorridas.setModel(modeloTabla1);
     }
     public InterfazVerDatosExpediente(String nombreDependencia, GestionDependencia objGestionDependencia, GestionPersonal objGestionUsuarios, Expediente expediente){
         initComponents();
@@ -31,7 +34,7 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
         this.dependenciaSeleccionada = retornarDependencia(nombreDependencia);
         rellenarDatos(expediente);
         modeloTabla1=new DefaultTableModel();
-        modeloTabla1.addColumn("Dependencias");   
+        modeloTabla1.addColumn("Dependencias recorridas");   
         tablaDependenciasRecorridas.setModel(modeloTabla1);
         cargarDependenciasRecorridas();
         

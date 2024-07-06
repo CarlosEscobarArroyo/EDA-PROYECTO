@@ -77,7 +77,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             Cola<Expediente> tempCola = new Cola<>();
             while (!colaExpedientes.esVacia()) {
                 Expediente expediente = colaExpedientes.desencolar();
-                if (expediente.isHighPriorityAndOverdue()) {
+                if (expediente.VerificarTiempoExpediente()) {
                     mostrarAlerta("El expediente con ID " + expediente.getNumExpediente() + " y ubicado en la dependencia "+expediente.getDependenciaActual()+" necesita ser atendido.");
                 }
                 tempCola.encolar(expediente);

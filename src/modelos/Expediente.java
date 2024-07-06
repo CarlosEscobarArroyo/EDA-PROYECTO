@@ -127,10 +127,10 @@ public class Expediente {
         System.out.println("Dependencia Agregada Al Recorrido");
         dependenciasRecorridas.agregar(nombreDependenciaRecorrida);
     }
-    public boolean isHighPriorityAndOverdue() {
+    public boolean VerificarTiempoExpediente() {
         if (this.prioridad2.getPrioridad().equals("Alta")) {
             Duration duration = Duration.between(this.tiempoExpediente, LocalTime.now());
-            return duration.getSeconds() == 20;
+            return duration.getSeconds() == 59;
         }
         return false;
     }
