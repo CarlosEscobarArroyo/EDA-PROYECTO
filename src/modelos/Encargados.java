@@ -9,7 +9,7 @@ package modelos;
  * @author brina
  */
 public class Encargados extends Usuario {
-
+    
     public Encargados(String nombre, Integer dni) {
         super(nombre, dni);
     }

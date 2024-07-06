@@ -123,6 +123,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         Expedientes = new javax.swing.JButton();
         txthora = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,7 +140,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Dependencias Disponibles");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -152,7 +153,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 143, 200, 30));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 200, 30));
 
         tabla2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,7 +170,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         tabla2.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane2.setViewportView(tabla2);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 480, 120));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 480, 120));
 
         jButton6.setBackground(new java.awt.Color(255, 51, 0));
         jButton6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -181,7 +182,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, 30));
 
         Expedientes.setBackground(new java.awt.Color(255, 51, 0));
         Expedientes.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -193,10 +194,9 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 ExpedientesActionPerformed(evt);
             }
         });
-        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 150, 30));
+        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 150, 30));
 
         txthora.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        txthora.setForeground(new java.awt.Color(0, 0, 0));
         txthora.setText("Hora");
         jPanel2.add(txthora, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
 
@@ -210,7 +210,19 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, 30));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 160, 30));
+
+        jButton7.setBackground(new java.awt.Color(255, 51, 0));
+        jButton7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Añadir Personal");
+        jButton7.setBorderPainted(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 160, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazAdministradorFONDO.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
@@ -264,6 +276,10 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ExpedientesActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +320,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;

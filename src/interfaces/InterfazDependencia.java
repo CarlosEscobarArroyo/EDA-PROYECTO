@@ -155,7 +155,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
         OrdenarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        botonHistorial = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -279,30 +278,15 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazDependencia.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        botonHistorial.setBackground(new java.awt.Color(51, 51, 51));
-        botonHistorial.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
-        botonHistorial.setForeground(new java.awt.Color(255, 255, 255));
-        botonHistorial.setText("historial");
-        botonHistorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonHistorialActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -393,15 +377,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_botonFinalizarActionPerformed
 
-    private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
-        // TODO add your handling code here:
-//
-//        InterfazFinalizarExpediente form = new InterfazFinalizarExpediente(objGestionDependencia, objGestionUsuarios, nombreDependencia);
-//        form.setVisible(true);
-//               
-        
-    }//GEN-LAST:event_botonHistorialActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -441,7 +416,6 @@ public class InterfazDependencia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OrdenarBtn;
     private javax.swing.JButton botonFinalizar;
-    private javax.swing.JButton botonHistorial;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMover;
     private javax.swing.JButton botonVerDatos;
