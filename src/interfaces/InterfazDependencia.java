@@ -227,7 +227,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 botonMoverActionPerformed(evt);
             }
         });
-        jPanel1.add(botonMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 113, -1));
+        jPanel1.add(botonMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 113, -1));
 
         botonVerDatos.setBackground(new java.awt.Color(255, 51, 0));
         botonVerDatos.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -239,7 +239,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 botonVerDatosActionPerformed(evt);
             }
         });
-        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 110, -1));
+        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
