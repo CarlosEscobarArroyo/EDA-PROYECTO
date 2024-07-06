@@ -144,8 +144,8 @@ public class InterfazTotalExpedientes extends javax.swing.JFrame{
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel1.setText("Expedientes Registrados");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 310, 70));
+        jLabel1.setText(" Expedientes Registrados");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 310, 80));
 
         txtTable3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         txtTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -192,7 +192,7 @@ public class InterfazTotalExpedientes extends javax.swing.JFrame{
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel3.setText("Expedientes Finalizados");
+        jLabel3.setText(" Expedientes Finalizados");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 300, 70));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 26)); // NOI18N

@@ -115,7 +115,8 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 fila[1] = String.valueOf(intere.getPrioridad2().getPrioridad());
                 fila[2] = intere.getDocumento();
                 fila[3] = String.valueOf(intere.getInteresado().getNombre());
-                fila[4] = String.valueOf(intere.getTiempoExpediente());
+                fila[4] = String.valueOf(intere.getEstado());
+                fila[5] = String.valueOf(intere.getTiempoExpediente());
                 modeloTabla1.addRow(fila);
                 temp.encolar(intere);
             } else {
@@ -188,7 +189,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 botonFinalizarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 100, -1));
+        jPanel1.add(botonFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 100, -1));
 
         txtNombreDependencia.setBackground(new java.awt.Color(102, 102, 102));
         txtNombreDependencia.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
@@ -227,7 +228,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 botonMoverActionPerformed(evt);
             }
         });
-        jPanel1.add(botonMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 113, -1));
+        jPanel1.add(botonMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 113, -1));
 
         botonVerDatos.setBackground(new java.awt.Color(255, 51, 0));
         botonVerDatos.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -239,7 +240,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
                 botonVerDatosActionPerformed(evt);
             }
         });
-        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
+        jPanel1.add(botonVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 110, -1));
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
@@ -252,7 +253,7 @@ public class InterfazDependencia extends javax.swing.JFrame {
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
 
         jPrioridadOLlegada.setBackground(new java.awt.Color(204, 204, 204));
-        jPrioridadOLlegada.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        jPrioridadOLlegada.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jPrioridadOLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioridad", "Orden de llegada" }));
         jPrioridadOLlegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -56,12 +56,12 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("DNI:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
         txtDNI.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         txtDNI.setForeground(new java.awt.Color(51, 51, 51));
@@ -70,7 +70,7 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
                 txtDNIActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 180, -1));
+        getContentPane().add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 51, 0));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
@@ -81,9 +81,9 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 160, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 180, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 0));
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Menú");
@@ -93,7 +93,7 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 160, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 130, -1));
 
         txtNombre.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(51, 51, 51));
@@ -102,7 +102,7 @@ public class InterfazCrearPersonal extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 180, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 180, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazCrearDependenciaFONDO.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

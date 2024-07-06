@@ -147,6 +147,7 @@ public class InterfazVerDatosExpediente extends javax.swing.JFrame {
 
         tablaDependenciasRecorridas.setBackground(new java.awt.Color(204, 204, 204));
         tablaDependenciasRecorridas.setFont(new java.awt.Font("SansSerif", 1, 15)); // NOI18N
+        tablaDependenciasRecorridas.setForeground(new java.awt.Color(255, 51, 0));
         tablaDependenciasRecorridas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

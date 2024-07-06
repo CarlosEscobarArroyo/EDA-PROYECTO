@@ -194,7 +194,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 ExpedientesActionPerformed(evt);
             }
         });
-        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 150, 30));
+        jPanel2.add(Expedientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 160, 30));
 
         txthora.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         txthora.setText("Hora");
@@ -210,7 +210,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 160, 30));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 170, 30));
 
         jButton7.setBackground(new java.awt.Color(255, 51, 0));
         jButton7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -222,7 +222,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 160, 30));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 170, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RECURSOS/InterfazAdministradorFONDO.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
