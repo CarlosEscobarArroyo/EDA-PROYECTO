@@ -51,7 +51,7 @@ public class GestionDependencia {
         // Crear expedientes para Registro Académico
         registroAcademico.agregarExpediente(new Expediente(media, "Tipo de Matrícula 7", interesado7, "Registro Académico"));
         registroAcademico.agregarExpediente(new Expediente(baja, "Tipo de Matrícula 8", interesado8, "Registro Académico"));
-        registroAcademico.agregarExpediente(new Expediente(alta, "Tipo de Matrícula 9", interesado9, "Registro Académico"));    
+        registroAcademico.agregarExpediente(new Expediente(media, "Tipo de Matrícula 9", interesado9, "Registro Académico"));    
         }
 
     public Lista<Dependencia> getDependencias() {
