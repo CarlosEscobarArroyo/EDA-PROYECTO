@@ -16,14 +16,13 @@ public class GestionPersonal {
 
     public GestionPersonal() {
         this.encargados=new Lista<>();
-//        Encargados usuario1= new Encargados("Billy", 4325);
-//        Encargados usuario2= new Encargados("Jose", 2346);
-//        Encargados usuario3= new Encargados("Nina", 1231);
-//        Encargados usuario4= new Encargados("Hanco", 2342);
-//        encargados.agregar(usuario1);
-//        encargados.agregar(usuario2);
-//        encargados.agregar(usuario3);
-//        encargados.agregar(usuario4);
+        Encargados encargado1 = new Encargados("Encargado Admisión y Matrícula", 12345678, 987654321, "admision@universidad.edu");
+        Encargados encargado2 = new Encargados("Encargado Finanzas Estudiantiles", 23456789, 876543210, "finanzas@universidad.edu");
+        Encargados encargado3 = new Encargados("Encargado Registro Académico", 34567890, 765432109, "registro@universidad.edu");
+        
+        encargados.agregar(encargado1);
+        encargados.agregar(encargado2);
+        encargados.agregar(encargado3);
     }
 
     public Lista<Encargados> getEncargados() {

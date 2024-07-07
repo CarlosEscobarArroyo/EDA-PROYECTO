@@ -17,23 +17,42 @@ public class GestionDependencia {
     public GestionDependencia() {
         this.dependencias=new Lista<>();
         this.expedientes=new Cola<>();
-//        Dependencia dependencia1=new Dependencia("DCG", "Gerente de DUSAR");
-//        Dependencia dependencia2=new Dependencia("EDA", "Gerente de TRAMITES");
-//        dependencias.agregar(dependencia1);
-//        dependencias.agregar(dependencia2);
-//        
-//        Prioridad prioridad2=new Prioridad("Media");    
-//        Prioridad prioridad=new Prioridad("Alta");    
-//
-//        Interesado interesado=new Interesado("Juan", 42,98982349, "av@gmail.com");        
-//        Interesado interesado2=new Interesado("Jose", 43,89893448, "df@gmail.com");
-//        
-//        Expediente expediente1=new Expediente(prioridad, "Notas", interesado2,"DCG");
-//        dependencia1.agregarExpediente(expediente1); 
-//        Expediente expediente2=new Expediente(prioridad2, "Carné", interesado,"EDA");
-//        dependencia2.agregarExpediente(expediente2);
-       
-    }
+        Encargados encargado1 = new Encargados("Encargado Admisión y Matrícula", 12345678, 987654321, "admision@universidad.edu");
+        Encargados encargado2 = new Encargados("Encargado Finanzas Estudiantiles", 23456789, 876543210, "finanzas@universidad.edu");
+        Encargados encargado3 = new Encargados("Encargado Registro Académico", 34567890, 765432109, "registro@universidad.edu");
+        
+        Dependencia admisionMatricula = new Dependencia("Admisión y Matrícula", encargado1.getNombre());
+        Dependencia finanzasEstudiantiles = new Dependencia("Finanzas Estudiantiles", encargado2.getNombre());
+        Dependencia registroAcademico = new Dependencia("Registro Académico", encargado3.getNombre());
+        dependencias.agregar(admisionMatricula);
+        dependencias.agregar(finanzasEstudiantiles);
+        dependencias.agregar(registroAcademico);
+        Interesado interesado1 = new Interesado("Juan Pérez", 11111111, 987654321, "juan.perez@correo.com");
+        Interesado interesado2 = new Interesado("Ana Gómez", 22222222, 876543210, "ana.gomez@correo.com");
+        Interesado interesado3 = new Interesado("Luis Martínez", 33333333, 765432109, "luis.martinez@correo.com");
+        Interesado interesado4 = new Interesado("María Rodríguez", 44444444, 654321098, "maria.rodriguez@correo.com");
+        Interesado interesado5 = new Interesado("Carlos Fernández", 55555555, 543210987, "carlos.fernandez@correo.com");
+        Interesado interesado6 = new Interesado("Laura Sánchez", 66666666, 432109876, "laura.sanchez@correo.com");
+        Interesado interesado7 = new Interesado("Miguel Torres", 77777777, 321098765, "miguel.torres@correo.com");
+        Interesado interesado8 = new Interesado("Elena Díaz", 88888888, 210987654, "elena.diaz@correo.com");
+        Interesado interesado9 = new Interesado("Jorge Ruiz", 99999999, 109876543, "jorge.ruiz@correo.com");
+        Prioridad alta=new Prioridad("Alta");
+        Prioridad media=new Prioridad("Media");
+        Prioridad baja=new Prioridad("Baja");
+        admisionMatricula.agregarExpediente(new Expediente(baja, "Tipo de Matrícula 1", interesado1, "Admisión y Matrícula"));
+        admisionMatricula.agregarExpediente(new Expediente(media, "Tipo de Matrícula 2", interesado2, "Admisión y Matrícula"));
+        admisionMatricula.agregarExpediente(new Expediente(baja, "Tipo de Matrícula 3", interesado3, "Admisión y Matrícula"));
+
+        // Crear expedientes para Finanzas Estudiantiles
+        finanzasEstudiantiles.agregarExpediente(new Expediente(media, "Tipo de Matrícula 4", interesado4, "Finanzas Estudiantiles"));
+        finanzasEstudiantiles.agregarExpediente(new Expediente(baja, "Tipo de Matrícula 5", interesado5, "Finanzas Estudiantiles"));
+        finanzasEstudiantiles.agregarExpediente(new Expediente(baja, "Tipo de Matrícula 6", interesado6, "Finanzas Estudiantiles"));
+
+        // Crear expedientes para Registro Académico
+        registroAcademico.agregarExpediente(new Expediente(media, "Tipo de Matrícula 7", interesado7, "Registro Académico"));
+        registroAcademico.agregarExpediente(new Expediente(baja, "Tipo de Matrícula 8", interesado8, "Registro Académico"));
+        registroAcademico.agregarExpediente(new Expediente(alta, "Tipo de Matrícula 9", interesado9, "Registro Académico"));    
+        }
 
     public Lista<Dependencia> getDependencias() {
         return dependencias;
