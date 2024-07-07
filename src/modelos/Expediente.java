@@ -113,7 +113,7 @@ public class Expediente {
         switch (prioridad2) {
             case "Alta":
                 return 1;
-            case "Normal":
+            case "Media":
                 return 2;
             case "Baja":
                 return 3;
@@ -130,7 +130,7 @@ public class Expediente {
     public boolean VerificarTiempoExpediente() {
         if (this.prioridad2.getPrioridad().equals("Alta")) {
             Duration duration = Duration.between(this.tiempoExpediente, LocalTime.now());
-            return duration.getSeconds() == 59;
+            return duration.getSeconds() == 20;
         }
         return false;
     }

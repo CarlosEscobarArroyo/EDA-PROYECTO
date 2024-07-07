@@ -205,7 +205,7 @@ public class InterfazModificadorExpediente extends javax.swing.JFrame {
 
         txtPrioridad.setBackground(new java.awt.Color(204, 204, 204));
         txtPrioridad.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Normal", "Baja" }));
+        txtPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Media", "Baja" }));
         txtPrioridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrioridadActionPerformed(evt);

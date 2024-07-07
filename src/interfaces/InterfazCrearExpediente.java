@@ -203,7 +203,7 @@ public class InterfazCrearExpediente extends javax.swing.JFrame {
 
         txtPrioridad.setBackground(new java.awt.Color(230, 230, 230));
         txtPrioridad.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Normal", "Baja" }));
+        txtPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Media", "Baja" }));
         txtPrioridad.setLightWeightPopupEnabled(false);
         txtPrioridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
